@@ -1,0 +1,143 @@
+<MediaController xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/MediaController1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.digitalclock.BigClock" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/back"
+                android:gravity="center" >
+
+                <TextView
+                    android:id="@+id/bh1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="00"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dim40mm" />
+
+                <TextView
+                    android:id="@+id/brr2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text=":"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dim35mm" />
+
+                <TextView
+                    android:id="@+id/bmm1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="00"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dim40mm" />
+
+                <TextView
+                    android:id="@+id/brr1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="top|center"
+                    android:text=":"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dim15mm" />
+
+                <TextView
+                    android:id="@+id/bss1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="top|center"
+                    android:text="00"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dim15mm" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@drawable/back" >
+
+                <TextView
+                    android:id="@+id/bmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="4"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dim15mm" />
+
+                <TextView
+                    android:id="@+id/bday"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dim15mm" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:id="@+id/byear"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/back"
+                    android:gravity="center"
+                    android:text="5"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dim15mm" />
+
+                <TextView
+                    android:id="@+id/btemp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/back"
+                    android:gravity="center"
+                    android:text="+10"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dim15mm" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</MediaController>

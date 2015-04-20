@@ -1,0 +1,72 @@
+<MediaController xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/MediaController1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.digitalclock.DetalsPrognoz" 
+    android:background="@color/black">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/pr1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="..."
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/green"
+                android:textSize="@dimen/dim3mm" />
+
+            <TextView
+                android:id="@+id/pr2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="..."
+                android:textColor="@color/green"
+                android:textSize="@dimen/dim3mm" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/pr3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="..."
+                android:textColor="@color/green"
+                android:textSize="@dimen/dim3mm" />
+
+            <TextView
+                android:id="@+id/pr4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="..."
+                android:textColor="@color/green"
+                android:textSize="@dimen/dim3mm" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</MediaController>

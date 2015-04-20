@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TableRow
+            android:id="@+id/tableRow6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/kd1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="ПН"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/kd2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="ВТ"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/kd3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="СР"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/kd4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="ЧТ"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/kd5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="ПТ"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/kd6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="СБ"
+                android:textColor="@color/red"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/kd7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="ВС"
+                android:textColor="@color/red"
+                android:textSize="@dimen/dim7mm" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/k1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="1-1"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="1-2"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="1-3"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="1-4"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="1-5"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="1-6"
+                android:textColor="@color/red"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="1-7"
+                android:textColor="@color/red"
+                android:textSize="@dimen/dim7mm" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/k8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2-1"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2-2"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2-3"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2-4"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2-5"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2-6"
+                android:textColor="@color/red"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2-7"
+                android:textColor="@color/red"
+                android:textSize="@dimen/dim7mm" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/k15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="3-1"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="3-2"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="3-3"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="3-4"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="3-5"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="3-6"
+                android:textColor="@color/red"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="3-7"
+                android:textColor="@color/red"
+                android:textSize="@dimen/dim7mm" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/k22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="4-1"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="4-2"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="4-3"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k25"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="4-4"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="4-5"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k27"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="4-6"
+                android:textColor="@color/red"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k28"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="4-7"
+                android:textColor="@color/red"
+                android:textSize="@dimen/dim7mm" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/k29"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text=""
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text=""
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k31"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text=""
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k32"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text=""
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k33"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text=""
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k34"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/red"
+                android:textSize="@dimen/dim7mm" />
+
+            <TextView
+                android:id="@+id/k35"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/red"
+                android:textSize="@dimen/dim7mm" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>
