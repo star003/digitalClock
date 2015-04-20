@@ -41,7 +41,7 @@ public class DynUsd extends Activity {
 	      	  public void run() {
 	      	    try {
 	      	      while (!isInterrupted()) {
-	      	        Thread.sleep(360000);
+	      	        Thread.sleep(2000);
 	      	        runOnUiThread(new Runnable() {
 	      	          @Override
 	      	          public void run() {
