@@ -11,4 +11,104 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.digitalclock.DynUsd" >
 
+    <LinearLayout
+        android:id="@+id/LinearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/lbUsdLast"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="текущее:"
+                android:textColor="@color/green"
+                android:textSize="@dimen/dim10mm" />
+
+            <TextView
+                android:id="@+id/usLast"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="53.344"
+                android:textColor="@color/green"
+                android:textSize="@dimen/dim10mm" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/lbUsOpen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="открытие:"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/dim10mm" />
+
+            <TextView
+                android:id="@+id/usOpen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="51.111"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/dim10mm" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/lbUsVal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="объем:"
+                android:textColor="@color/red"
+                android:textSize="@dimen/dim10mm" />
+
+            <TextView
+                android:id="@+id/usVal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="4934807000"
+                android:textColor="@color/red"
+                android:textSize="@dimen/dim10mm" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/usTime"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="20:47:14"
+                android:textColor="@color/yellow"
+                android:textSize="@dimen/dim10mm" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 </LinearLayout>
