@@ -135,7 +135,7 @@ public class DashBoard extends Activity implements OnClickListener {
 		
 		if (v.getId()==R.id.prg) {
 			Log.i("dashboard"," R.id.prg");
-			Intent intent = new Intent(this, DetalsPrognoz.class);
+			Intent intent = new Intent(this, FromGis.class);
 		    startActivity(intent);
 		}
 		
