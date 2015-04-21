@@ -36,9 +36,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="53.344"
+                android:text="-"
                 android:textColor="@color/green"
                 android:textSize="@dimen/dim10mm" />
+
+            <TextView
+                android:id="@+id/usLastTrend"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="---"
+                android:textColor="@color/green"
+                android:textSize="@dimen/dim5mm" />
 
         </LinearLayout>
 
@@ -61,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="51.111"
+                android:text="-"
                 android:textColor="@color/blue"
                 android:textSize="@dimen/dim10mm" />
 
@@ -86,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="4934807000"
+                android:text="-"
                 android:textColor="@color/red"
                 android:textSize="@dimen/dim10mm" />
 
@@ -103,7 +112,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="20:47:14"
+                android:text="-"
                 android:textColor="@color/yellow"
                 android:textSize="@dimen/dim10mm" />
 
