@@ -307,7 +307,21 @@ public class gisFromSite {
 	}//static ArrayList<String> getImg(Document doc,String prm)
 
 	///////////////////////////////////////////////////////////////////////////////////
-
+	//	описание:
+	//		граб прогноза погоды с гисметео
+	//	пример:
+	//public static void main(String[] args) throws IOException {
+	//	ArrayList<ArrayList<String>> x =grabGismeteo();
+	//	for(ArrayList<String> a:x){
+	//		for(String h:a){
+	//			System.out.print(h);
+	//			System.out.print("	");
+	//		}
+	//		System.out.println("");
+	//	}
+	//System.out.println(m_tempO.get(0));
+	//} //public static void main(String[] args) throws IOException
+	//
 	static ArrayList<ArrayList<String>> grabGismeteo() throws IOException{
 		ArrayList<ArrayList<String>> x = new ArrayList<ArrayList<String>>();
 		Document doc  = Jsoup.connect("http://www.gismeteo.ru/city/legacy/4298/").get();

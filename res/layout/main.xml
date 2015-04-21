@@ -81,7 +81,7 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow1"
+            android:id="@+id/gsDataRow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
@@ -152,7 +152,7 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow2"
+            android:id="@+id/gsCloudRow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
@@ -223,7 +223,7 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow3"
+            android:id="@+id/gsPerspRow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
@@ -294,7 +294,7 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow4"
+            android:id="@+id/gsTempRow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
