@@ -32,7 +32,7 @@
                     android:layout_weight="4"
                     android:background="@drawable/back"
                     android:gravity="center"
-                    android:text="ФАКТ 21.04 6:00"
+                    android:text="-"
                     android:textColor="@color/white" />
 
                 <TextView
@@ -42,7 +42,7 @@
                     android:layout_weight="3"
                     android:background="@drawable/back"
                     android:gravity="center"
-                    android:text="21 Апреля, Вторник"
+                    android:text="-"
                     android:textColor="@color/white" />
 
                 <TextView
@@ -52,7 +52,7 @@
                     android:layout_weight="3"
                     android:background="@drawable/back"
                     android:gravity="center"
-                    android:text="22 Апреля, Среда"
+                    android:text="-"
                     android:textColor="@color/white" />
 
                 <TextView
@@ -62,7 +62,7 @@
                     android:layout_weight="3"
                     android:background="@drawable/back"
                     android:gravity="center"
-                    android:text="23 Апреля, Четверг"
+                    android:text="-"
                     android:textColor="@color/white" />
             </LinearLayout>
         </TableRow>

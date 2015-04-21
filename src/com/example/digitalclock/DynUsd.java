@@ -43,7 +43,7 @@ public class DynUsd extends Activity {
 			public void run() {
 				try {
 					while (!isInterrupted()) {
-						Thread.sleep(2000);
+						Thread.sleep(30000);
 						runOnUiThread(new Runnable() {
 							@Override
 							public void run() {
@@ -107,11 +107,11 @@ public class DynUsd extends Activity {
 	    protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 			List<Integer> ind = Arrays.asList(0,1,4,6,7);
-			if (_stringData.size()==7) {
+			//if (_stringData.size()==7) {
 				for (int i=0;i<ind.size();i++){
 					_fields.get(i).setText(_stringData.get(ind.get(i)));
 				}
-			}	
+			//}	
 		}//protected void onPostExecute(Void result)
 		
 	}//class goMCEX extends AsyncTask<Void, Void, Void>

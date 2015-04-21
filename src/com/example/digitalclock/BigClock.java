@@ -45,6 +45,9 @@ public class BigClock extends Activity{
 			_fields.add(fff);
 		}
 		
+		mt = new goInd();
+		mt.execute();
+			
 		Thread t = new Thread() {
       	@Override
       	public void run() {

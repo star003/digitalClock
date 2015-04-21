@@ -22,8 +22,8 @@ import android.widget.TextView;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 public class FromGis extends Activity {
-	ArrayList<TextView> _fields = new ArrayList<TextView>();
-	ArrayList<ImageView> _fieldsI = new ArrayList<ImageView>();
+	ArrayList<TextView> _fields 	= new ArrayList<TextView>();
+	ArrayList<ImageView> _fieldsI 	= new ArrayList<ImageView>();
 	int sc =0;
 	goGis mt;
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -84,20 +84,28 @@ public class FromGis extends Activity {
 		 * с 0 по 3 и 30 до конца - это текст
 		 * с 4 по 29 - картинки
 		 */
+		
 		for (int i=0;i<fldId.size();i++){
 			if(i<3 & i>29) {
 				TextView fff = (TextView)findViewById(fldId.get(i));
+				fff.setText("000");
 				_fields.add(fff);
-				_fieldsI.add(null);
+				//_fieldsI.add(null);
+				
 			}
+			
 			else {
 				_fields.add(null);
-				ImageView ggg = (ImageView)findViewById(fldId.get(i));
-				_fieldsI.add(ggg);
+				//ImageView ggg = (ImageView)findViewById(fldId.get(i));
+				//_fieldsI.add(ggg);
 			}
+			
+			
 		}
-		mt = new goGis();
-		mt.execute();
+		
+		
+		//mt = new goGis();
+		//mt.execute();
 		
 	}//protected void onCreate(Bundle savedInstanceState)
 	
@@ -139,6 +147,7 @@ public class FromGis extends Activity {
 				x = gisFromSite.grabGismeteo();
 			} catch (IOException e) {
 				Log.i("m","error gisFromSite.grabGismeteo()");
+				_stringData.add("err");
 			}
 			for(ArrayList<String> a:x){
 				for(String h:a){
@@ -153,18 +162,24 @@ public class FromGis extends Activity {
 		@Override
 	    protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
+			/*
 			for (int i = 0;i<_stringData.size();i++){
 				if(i<3 & i>29) {
 					//**вывод текстовой информации
-					_fields.get(i).setText(_stringData.get(i));
+					//_fields.get(i).setText(_stringData.get(i));
+					_fields.get(i).setText("000");
 				}
+				
 				else {
 					//**вывод  графической информации
 					ImageView ggg = _fieldsI.get(i); 
 					//	new DownloadImageTask((ImageView) findViewById(R.id.imageview)).execute(ImageUrl);
 					new DownloadImageTask((ImageView) ggg).execute(_stringData.get(i));
 				}
+				
 			}
+		*/
+			//_fields.get(0).setText("000");	
 		}//protected void onPostExecute(Void result)
 		
 	}//class goGis extends AsyncTask<Void, Void, Void>

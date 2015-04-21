@@ -290,7 +290,7 @@ public class priceBRENT {
 			i++;
 		}
 		String[] f = gisFromSite.getCurrData();
-		x.add(f[3]+":"+f[4]+":"+f[5]);
+		x.add(f[3]+":"+f[4]);
 		return x;
 	}//public static String gis() throws IOException
 
