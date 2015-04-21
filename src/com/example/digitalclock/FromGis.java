@@ -84,29 +84,21 @@ public class FromGis extends Activity {
 		 * с 0 по 3 и 30 до конца - это текст
 		 * с 4 по 29 - картинки
 		 */
-		
+		Log.i("FromGis","fldId.size() "+String.valueOf(fldId.size()));
 		for (int i=0;i<fldId.size();i++){
-			if(i<3 & i>29) {
+			if(i<4 | i>29) {
 				TextView fff = (TextView)findViewById(fldId.get(i));
-				fff.setText("000");
 				_fields.add(fff);
-				//_fieldsI.add(null);
-				
+				_fieldsI.add(null);
 			}
-			
 			else {
 				_fields.add(null);
-				//ImageView ggg = (ImageView)findViewById(fldId.get(i));
-				//_fieldsI.add(ggg);
+				ImageView ggg = (ImageView)findViewById(fldId.get(i));
+				_fieldsI.add(ggg);
 			}
-			
-			
 		}
-		
-		
-		//mt = new goGis();
-		//mt.execute();
-		
+		mt = new goGis();
+		mt.execute();
 	}//protected void onCreate(Bundle savedInstanceState)
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -146,14 +138,16 @@ public class FromGis extends Activity {
 			try {
 				x = gisFromSite.grabGismeteo();
 			} catch (IOException e) {
-				Log.i("m","error gisFromSite.grabGismeteo()");
+				Log.i("FromGis","error gisFromSite.grabGismeteo()");
 				_stringData.add("err");
 			}
+			
 			for(ArrayList<String> a:x){
 				for(String h:a){
 					_stringData.add(h);
 				}
 			}
+			Log.i("FromGis","_stringData.size() "+String.valueOf(_stringData.size()));
 	    	return null;
 	    }//protected Void doInBackground(Void... params)
 
@@ -162,23 +156,23 @@ public class FromGis extends Activity {
 		@Override
 	    protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
-			/*
-			for (int i = 0;i<_stringData.size();i++){
-				if(i<3 & i>29) {
+			Log.i("FromGis","start draw field");
+			Log.i("FromGis"," onPostExecute_stringData.size()  "+String.valueOf(_stringData.size()));
+			for (int i1 = 0;i1<_stringData.size();i1++){
+				if(i1<4 | i1>29) {
 					//**вывод текстовой информации
-					//_fields.get(i).setText(_stringData.get(i));
-					_fields.get(i).setText("000");
+					_fields.get(i1).setText(_stringData.get(i1));
+					Log.i("FromGis",String.valueOf(i1));
 				}
 				
 				else {
 					//**вывод  графической информации
-					ImageView ggg = _fieldsI.get(i); 
+					ImageView ggg = _fieldsI.get(i1); 
 					//	new DownloadImageTask((ImageView) findViewById(R.id.imageview)).execute(ImageUrl);
-					new DownloadImageTask((ImageView) ggg).execute(_stringData.get(i));
+					new DownloadImageTask((ImageView) ggg).execute(_stringData.get(i1));
 				}
-				
 			}
-		*/
+		
 			//_fields.get(0).setText("000");	
 		}//protected void onPostExecute(Void result)
 		
