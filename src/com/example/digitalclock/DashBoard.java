@@ -53,7 +53,7 @@ public class DashBoard extends Activity implements OnClickListener {
 	            WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		Typeface face=Typeface.createFromAsset(getAssets(), "Electron.ttf");
 		
-		Log.i(this_marker," start");
+		Log.i(this_marker," welcome dashboard");
 		
 		List<Integer> fldId = Arrays.asList(R.id.curT,R.id.minT,R.id.trend,R.id.maxT,
 				R.id.brent,R.id.usd,R.id.bch1,R.id.brr1,
@@ -99,7 +99,7 @@ public class DashBoard extends Activity implements OnClickListener {
         			}
         		}
         		catch (InterruptedException e) {
-        			Log.i(this_marker," error in t = new Thread()- public void run()");
+        			Log.e(this_marker," error in t = new Thread()- public void run()");
         		}
         	}//public void run()
        };//Thread t = new Thread()
@@ -188,25 +188,28 @@ public class DashBoard extends Activity implements OnClickListener {
 	    				_stringData.set(i, x[ind.get(i)].indexOf(" ")>0 
 	    						? x[ind.get(i)] : "".concat(x[ind.get(i)])) ;
 	    				
-	    				Log.i("m",x[ind.get(i)].indexOf(" ")>0 
+	    				Log.i(this_marker,x[ind.get(i)].indexOf(" ")>0 
 	    						? x[ind.get(i)] : "".concat(x[ind.get(i)]));
 	    				
 	    			}
 	    		}
+	    		else {
+	    			Log.e(this_marker,"error _stringData in class goInd less 7 ");
+	    		}
 	    	} catch (IOException e) {
-	    		Log.i(this_marker,"error read gisFromSite.readMy() in class goInd");
+	    		Log.e(this_marker,"error read gisFromSite.readMy() in class goInd");
 			}
 	    	
 	    	try {
 				_stringData.set(4,"Brent: ".concat(priceBRENT.investing()));
 			} catch (IOException e1) {
-				Log.i(this_marker,"error priceBRENT.investing() in class goInd");
+				Log.e(this_marker,"error priceBRENT.investing() in class goInd");
 			}
 	    	
 	    	try {
 	    		_stringData.set(5, "USD: ".concat(priceBRENT.usd()));
 			} catch (IOException e) {
-				Log.i(this_marker,"error read priceBRENT.usd() in class goInd");
+				Log.e(this_marker,"error read priceBRENT.usd() in class goInd");
 			}
 	    	
 	    	//**прогноз погоды
@@ -216,7 +219,7 @@ public class DashBoard extends Activity implements OnClickListener {
 	    			_stringData.set(12,String.valueOf(h.get(0)));
 	    		}	
 	    	}catch (IOException e) {
-	    		Log.i(this_marker,"error read gisFromSite.getPrognozV2() in class goInd");
+	    		Log.e(this_marker,"error read gisFromSite.getPrognozV2() in class goInd");
 			}
 	    	
 	    	//**Долгота дня
@@ -232,7 +235,7 @@ public class DashBoard extends Activity implements OnClickListener {
 					
 				}
 			} catch (IOException e) {
-				Log.i(this_marker,"error read gisFromSite.getAstronomy() in class goInd");
+				Log.e(this_marker,"error read gisFromSite.getAstronomy() in class goInd");
 			}
 	    	return null;
 	    }//protected Void doInBackground(Void... params)
@@ -271,12 +274,12 @@ public class DashBoard extends Activity implements OnClickListener {
 			try {
 				_stringData.set(4,  priceBRENT.investing());
 			} catch (IOException e1) {
-				Log.i(this_marker,"error read priceBRENT.investing() in  class goUsd");
+				Log.e(this_marker,"error read priceBRENT.investing() in  class goUsd");
 			}
 	    	try {
 	    		_stringData.set(5, priceBRENT.usd());
 			} catch (IOException e) {
-				Log.i(this_marker,"error read priceBRENT.usd() in  class goUsd");
+				Log.e(this_marker,"error read priceBRENT.usd() in  class goUsd");
 			}
 		    return null;
 	    }//protected Void doInBackground(Void... params)
@@ -319,7 +322,7 @@ public class DashBoard extends Activity implements OnClickListener {
 	    			}
 	    		}
 	    	} catch (IOException e) {
-	    		Log.i(this_marker,"error read gisFromSite.readMy() in  class goCurrT");
+	    		Log.e(this_marker,"error read gisFromSite.readMy() in  class goCurrT");
 			}
 		    return null;
 	    }//protected Void doInBackground(Void... params)
@@ -334,6 +337,7 @@ public class DashBoard extends Activity implements OnClickListener {
 		    	  _fields.get(ind.get(i)).setText(_stringData.get(ind.get(i)));
 		      }
 	    }//protected void onPostExecute(Void result)
+		
 	}//class goCurrT extends AsyncTask<Void, Void, Void>
 	
-}
+}//public class DashBoard extends Activity implements OnClickListener
