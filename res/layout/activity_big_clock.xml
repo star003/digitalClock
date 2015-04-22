@@ -90,7 +90,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/back"
                     android:gravity="center"
-                    android:text="день"
+                    android:text="месяц"
                     android:textSize="@dimen/dim5mm" />
 
                 <TextView
@@ -100,7 +100,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/back"
                     android:gravity="center"
-                    android:text="день н."
+                    android:text="день"
                     android:textSize="@dimen/dim5mm" />
 
             </LinearLayout>
@@ -117,7 +117,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/back"
                     android:gravity="center"
-                    android:text="месяц"
+                    android:text="день недели"
                     android:textSize="@dimen/dim5mm" />
 
                 <TextView
@@ -151,7 +151,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="4"
+                    android:text="-"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dim15mm" />
 
@@ -161,7 +161,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="3"
+                    android:text="-"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dim15mm" />
 
@@ -179,7 +179,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/back"
                     android:gravity="center"
-                    android:text="5"
+                    android:text="-"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dim15mm" />
 
@@ -190,7 +190,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/back"
                     android:gravity="center"
-                    android:text="+10"
+                    android:text="-"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dim15mm" />
