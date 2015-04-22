@@ -284,7 +284,7 @@ public class priceBRENT {
 		Elements a1 = doc.select("td.value");
 		int i = 0;
 		for (Element d:a1) {
-			if(i>5 & i<13) {
+			if(i>5 & i<13 ) {
 				x.add(d.text());
 			}	
 			i++;

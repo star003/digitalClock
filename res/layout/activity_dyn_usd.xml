@@ -57,31 +57,6 @@
             android:layout_weight="1" >
 
             <TextView
-                android:id="@+id/lbUsOpen"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="открытие:"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/dim10mm" />
-
-            <TextView
-                android:id="@+id/usOpen"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="-"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/dim10mm" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" >
-
-            <TextView
                 android:id="@+id/lbUsVal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

@@ -28,7 +28,7 @@ public class DynUsd extends Activity {
 	            WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		
 		List<Integer> fldId = Arrays.asList(R.id.usLast,R.id.usLastTrend
-											,R.id.usOpen,R.id.usVal
+											,R.id.usVal
 											,R.id.usTime);
 		for (int i=0;i<fldId.size();i++){
 			TextView fff = (TextView)findViewById(fldId.get(i));
@@ -106,7 +106,7 @@ public class DynUsd extends Activity {
 		@Override
 	    protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
-			List<Integer> ind = Arrays.asList(0,1,4,6,7);
+			List<Integer> ind = Arrays.asList(0,1,6,7);
 			//if (_stringData.size()==7) {
 				for (int i=0;i<ind.size();i++){
 					_fields.get(i).setText(_stringData.get(ind.get(i)));

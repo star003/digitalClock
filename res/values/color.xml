@@ -9,4 +9,12 @@
     <color name="white">#FFFFFF</color>
     <color name="green">#33CC33</color>
     <color name="ligthBlue">#33FFFF</color>
+    
+    <color name="back">#EDEDED</color>
+    <color name="noch">#E4F2FF</color>
+    <color name="ytro">#FFF0E6</color>
+    <color name="day">#FFFFF0</color>
+    <color name="vecher">#F0FFF0</color>
+    <color name="font">#776E99</color>
+    
 </resources>
