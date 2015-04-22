@@ -2,7 +2,6 @@ package com.example.digitalclock;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,6 +25,8 @@ public class FromGis extends Activity {
 	ArrayList<ImageView> _fieldsI 	= new ArrayList<ImageView>();
 	int sc =0;
 	goGis mt;
+	String this_marker = "FromGis"; //** зададим имя маркера для логов
+	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	@Override
@@ -84,7 +85,7 @@ public class FromGis extends Activity {
 		 * с 0 по 3 и 30 до конца - это текст
 		 * с 4 по 29 - картинки
 		 */
-		Log.i("FromGis","fldId.size() "+String.valueOf(fldId.size()));
+		Log.i(this_marker,"fldId.size() "+String.valueOf(fldId.size()));
 		for (int i=0;i<fldId.size();i++){
 			if(i<4 | i>29) {
 				TextView fff = (TextView)findViewById(fldId.get(i));
@@ -138,8 +139,7 @@ public class FromGis extends Activity {
 			try {
 				x = gisFromSite.grabGismeteo();
 			} catch (IOException e) {
-				Log.i("FromGis","error gisFromSite.grabGismeteo()");
-				_stringData.add("err");
+				Log.i(this_marker,"error gisFromSite.grabGismeteo() in class goGis");
 			}
 			
 			for(ArrayList<String> a:x){
@@ -147,7 +147,6 @@ public class FromGis extends Activity {
 					_stringData.add(h);
 				}
 			}
-			Log.i("FromGis","_stringData.size() "+String.valueOf(_stringData.size()));
 	    	return null;
 	    }//protected Void doInBackground(Void... params)
 
@@ -156,24 +155,18 @@ public class FromGis extends Activity {
 		@Override
 	    protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
-			Log.i("FromGis","start draw field");
-			Log.i("FromGis"," onPostExecute_stringData.size()  "+String.valueOf(_stringData.size()));
 			for (int i1 = 0;i1<_stringData.size();i1++){
 				if(i1<4 | i1>29) {
 					//**вывод текстовой информации
 					_fields.get(i1).setText(_stringData.get(i1));
-					Log.i("FromGis",String.valueOf(i1));
 				}
 				
 				else {
 					//**вывод  графической информации
 					ImageView ggg = _fieldsI.get(i1); 
-					//	new DownloadImageTask((ImageView) findViewById(R.id.imageview)).execute(ImageUrl);
 					new DownloadImageTask((ImageView) ggg).execute(_stringData.get(i1));
 				}
 			}
-		
-			//_fields.get(0).setText("000");	
 		}//protected void onPostExecute(Void result)
 		
 	}//class goGis extends AsyncTask<Void, Void, Void>
@@ -194,8 +187,7 @@ public class FromGis extends Activity {
 	              InputStream in = new java.net.URL(urldisplay).openStream();
 	              mIcon11 = BitmapFactory.decodeStream(in);
 	          } catch (Exception e) {
-	              Log.e("Error", e.getMessage());
-	              e.printStackTrace();
+	              Log.e(this_marker, "error protected Bitmap doInBackground in private class DownloadImageTask");
 	          }
 	          return mIcon11;
 	      }//protected Bitmap doInBackground(String... urls)

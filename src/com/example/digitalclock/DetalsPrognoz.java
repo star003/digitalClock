@@ -13,9 +13,14 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+//	описание:
+//		не используется . . .
+
 public class DetalsPrognoz extends Activity {
 	TextView pr1,pr2,pr3,pr4;
 	goPr mt;
+	String this_marker = "DetalsPrognoz"; //** зададим имя маркера для логов
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +30,7 @@ public class DetalsPrognoz extends Activity {
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 	            WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		Typeface face=Typeface.createFromAsset(getAssets(),
-                "digital-7mi.ttf");
+		Typeface face=Typeface.createFromAsset(getAssets(),"digital-7mi.ttf");
 		
 		pr1 = (TextView)findViewById(R.id.pr1);
 		pr1.setTypeface(face);
@@ -41,26 +45,23 @@ public class DetalsPrognoz extends Activity {
 		pr4.setTypeface(face);
 		mt = new goPr();
         mt.execute();
-	}
+        
+	}//protected void onCreate(Bundle savedInstanceState)
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.detals_prognoz, menu);
 		return true;
-	}
+	}//public boolean onCreateOptionsMenu(Menu menu)
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}
+	}//public boolean onOptionsItemSelected(MenuItem item)
 	
 	class goPr extends AsyncTask<Void, Void, Void> {
 		String _pr1,_pr2,_pr3,_pr4 ="";
@@ -100,10 +101,12 @@ public class DetalsPrognoz extends Activity {
 		@Override
 	    protected void onPostExecute(Void result) {
 	    	super.onPostExecute(result);
+	    	
 	    	pr1.setText(_pr1);
 	    	pr2.setText(_pr2);
 	    	pr3.setText(_pr3);
 	    	pr4.setText(_pr4);
+	    	
 	    }//protected void onPostExecute(Void result)
 	}//class goPr extends AsyncTask<Void, Void, Void>
 }

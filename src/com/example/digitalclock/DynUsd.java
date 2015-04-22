@@ -15,10 +15,19 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//	описание:
+//		покажет , что по доллару
+
 public class DynUsd extends Activity {
 	ArrayList<TextView> _fields = new ArrayList<TextView>();
+	
 	int sc =0;
+	
 	goMCEX mt;
+	
+	String this_marker = "DynUsd"; //** зададим имя маркера для логов
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,8 +37,8 @@ public class DynUsd extends Activity {
 	            WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		
 		List<Integer> fldId = Arrays.asList(R.id.usLast,R.id.usLastTrend
-											,R.id.usVal
-											,R.id.usTime);
+											,R.id.usVal ,R.id.usTime);
+		
 		for (int i=0;i<fldId.size();i++){
 			TextView fff = (TextView)findViewById(fldId.get(i));
 			_fields.add(fff);
@@ -53,9 +62,10 @@ public class DynUsd extends Activity {
 						});
 	      	      	}
 	      	    } catch (InterruptedException e) {
+	      	    	Log.i(this_marker,"error thread T");
 	      	    }
-			}
-		};
+			}//public void run()
+		};//Thread t = new Thread()
 		t.start();
 	      	
 	}//protected void onCreate(Bundle savedInstanceState)
@@ -96,7 +106,7 @@ public class DynUsd extends Activity {
 	    	try {
 	    		_stringData = priceBRENT.usdFinam();
 	    	} catch (IOException e) {
-	    		Log.i("m","error read priceBRENT.usdFinam()");
+	    		Log.i(this_marker,"error read priceBRENT.usdFinam() in class goMCEX");
 			}
 	    	return null;
 	    }//protected Void doInBackground(Void... params)

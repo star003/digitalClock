@@ -23,7 +23,9 @@ public class DashBoard extends Activity implements OnClickListener {
 	ArrayList<TextView> _fields = new ArrayList<TextView>();
 	goInd mt;
 	goUsd mt1;
+	goCurrT mt2;
 	int sc =0;
+	String this_marker = "DashBoard"; //** зададим имя маркера для логов
 	
 	/////////////////////////////////////////////////////////////////////////////////////
 	/*
@@ -49,9 +51,10 @@ public class DashBoard extends Activity implements OnClickListener {
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 	            WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		Typeface face=Typeface.createFromAsset(getAssets(),
-                "Electron.ttf");
-		Log.i("dashboard"," start");
+		Typeface face=Typeface.createFromAsset(getAssets(), "Electron.ttf");
+		
+		Log.i(this_marker," start");
+		
 		List<Integer> fldId = Arrays.asList(R.id.curT,R.id.minT,R.id.trend,R.id.maxT,
 				R.id.brent,R.id.usd,R.id.bch1,R.id.brr1,
 				R.id.m1,R.id.weekDay,R.id.day,R.id.mont,R.id.prg,R.id.astr);
@@ -61,46 +64,52 @@ public class DashBoard extends Activity implements OnClickListener {
 			fff.setTypeface(face);
 			_fields.add(fff);
 		}
+		
 		mt = new goInd();
        	mt.execute();
+       	
         Thread t = new Thread() {
-        	  @Override
-        	  public void run() {
-        	    try {
-        	      while (!isInterrupted()) {
-        	        Thread.sleep(1000);
-        	        runOnUiThread(new Runnable() {
-        	          @Override
-        	          public void run() {
-        	        	  sc ++;
-        	        	  	Calendar currentTime = Calendar.getInstance();
-        	        	  	_fields.get(6).setText(((currentTime.get(11)) >=10 ? String.valueOf(currentTime.get(11))  : "0"+String.valueOf(currentTime.get(11))));
-        	        	  	_fields.get(8).setText(((currentTime.get(12)) >=10 ? String.valueOf(currentTime.get(12))  : "0"+String.valueOf(currentTime.get(12))));
-        	      	    	String[] xx = gisFromSite.getCurrData();
-        	      	    	_fields.get(9).setText(xx[7]);
-        	      	    	_fields.get(10).setText(xx[2]);
-        	      	    	_fields.get(11).setText(xx[6]);
+        	@Override
+        	public void run() {
+        		try {
+        			while (!isInterrupted()) {
+        				Thread.sleep(1000);
+        				runOnUiThread(new Runnable() {
+        					@Override
+        					public void run() {
+        						sc ++;
+        						Calendar currentTime = Calendar.getInstance();
+        						_fields.get(6).setText(((currentTime.get(11)) >=10 ? String.valueOf(currentTime.get(11))  : "0"+String.valueOf(currentTime.get(11))));
+        						_fields.get(8).setText(((currentTime.get(12)) >=10 ? String.valueOf(currentTime.get(12))  : "0"+String.valueOf(currentTime.get(12))));
+        						
+        						String[] xx = gisFromSite.getCurrData();
+        						
+        						_fields.get(9).setText(xx[7]);
+        						_fields.get(10).setText(xx[2]);
+        						_fields.get(11).setText(xx[6]);
         	      	      
-        	      	    	if (sc>300) {
-        	      	    		sc = 0;
-        	      	    		mt = new goInd();
-        	      	    		mt.execute();
-        	      	    	}
-        	          }
-        	        });
-        	      }
-        	    } catch (InterruptedException e) {
-        	    }
-        	  }
-        	};
-        	t.start();
-	}//protected void onCreate(Bundle savedInstanceState)
+        						if (sc>300) {
+        							sc = 0;
+        							mt = new goInd();
+        							mt.execute();
+        						}
+        						
+        					}//public void run()
+        				});//runOnUiThread(new Runnable()
+        			}
+        		}
+        		catch (InterruptedException e) {
+        			Log.i(this_marker," error in t = new Thread()- public void run()");
+        		}
+        	}//public void run()
+       };//Thread t = new Thread()
+       t.start();
+    }//protected void onCreate(Bundle savedInstanceState)
 
 	/////////////////////////////////////////////////////////////////////////////////////
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.dash_board, menu);
 		return true;
 	}//public boolean onCreateOptionsMenu(Menu menu)
@@ -109,9 +118,6 @@ public class DashBoard extends Activity implements OnClickListener {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			return true;
@@ -124,29 +130,31 @@ public class DashBoard extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		if (v.getId()==R.id.usd) {
-			Log.i("dashboard"," take USD");
+			Log.i(this_marker," take USD");
 			Intent intent = new Intent(this, DynUsd.class);
 		    startActivity(intent);
 		}
 		
 		if (v.getId()==R.id.curT) {
-			Log.i("dashboard"," R.id.curT");
+			Log.i(this_marker," R.id.curT");
+			mt2 = new goCurrT();
+			mt2.execute();
 		}
 		
 		if (v.getId()==R.id.prg) {
-			Log.i("dashboard"," R.id.prg");
+			Log.i(this_marker," R.id.prg");
 			Intent intent = new Intent(this, FromGis.class);
 		    startActivity(intent);
 		}
 		
 		if (v.getId()==R.id.bch1 | v.getId()==R.id.m1 | v.getId()==R.id.brr1) {
-			Log.i("dashboard"," take R.id.bch1 | v.getId()==R.id.m1 | v.getId()==R.id.brr1");
+			Log.i(this_marker," take R.id.bch1 | v.getId()==R.id.m1 | v.getId()==R.id.brr1");
 			Intent intent = new Intent(this, BigClock.class);
 		    startActivity(intent);
 		}
 		
 		if (v.getId()==R.id.mont) {
-			Log.i("dashboard"," take R.id.mont");
+			Log.i(this_marker," take R.id.mont");
 			Intent intent = new Intent(this, MainActivity.class);
 		    startActivity(intent);
 		}
@@ -172,28 +180,33 @@ public class DashBoard extends Activity implements OnClickListener {
 	    	try {
 	    		//**мой датчик
 	    		String[] x = gisFromSite.readMy();
+	    		
 	    		if (x.length>6) {
+	    			
 	    			for(int i=0;i<ind.size();i++){
+	    				
 	    				_stringData.set(i, x[ind.get(i)].indexOf(" ")>0 
 	    						? x[ind.get(i)] : "".concat(x[ind.get(i)])) ;
+	    				
 	    				Log.i("m",x[ind.get(i)].indexOf(" ")>0 
 	    						? x[ind.get(i)] : "".concat(x[ind.get(i)]));
+	    				
 	    			}
 	    		}
 	    	} catch (IOException e) {
-	    		Log.i("m","error read my weather");
+	    		Log.i(this_marker,"error read gisFromSite.readMy() in class goInd");
 			}
-	    	
 	    	
 	    	try {
 				_stringData.set(4,"Brent: ".concat(priceBRENT.investing()));
 			} catch (IOException e1) {
-				Log.i("m","error read Brent");
+				Log.i(this_marker,"error priceBRENT.investing() in class goInd");
 			}
+	    	
 	    	try {
 	    		_stringData.set(5, "USD: ".concat(priceBRENT.usd()));
 			} catch (IOException e) {
-				Log.i("m","error read usd");
+				Log.i(this_marker,"error read priceBRENT.usd() in class goInd");
 			}
 	    	
 	    	//**прогноз погоды
@@ -203,18 +216,23 @@ public class DashBoard extends Activity implements OnClickListener {
 	    			_stringData.set(12,String.valueOf(h.get(0)));
 	    		}	
 	    	}catch (IOException e) {
+	    		Log.i(this_marker,"error read gisFromSite.getPrognozV2() in class goInd");
 			}
 	    	
 	    	//**Долгота дня
 	    	String[] ast;
 			try {
 				ast = gisFromSite.getAstronomy();
+				
 				if (ast.length>4) {
+					
 					_stringData.set(13,ast[0] +":"+ast[1]+" "
 						+ast[2] +":"+ast[3]+" "
-						+ast[4] +":"+ast[5])	;
+						+ast[4] +":"+ast[5]);
+					
 				}
 			} catch (IOException e) {
+				Log.i(this_marker,"error read gisFromSite.getAstronomy() in class goInd");
 			}
 	    	return null;
 	    }//protected Void doInBackground(Void... params)
@@ -224,10 +242,13 @@ public class DashBoard extends Activity implements OnClickListener {
 		@Override
 	    protected void onPostExecute(Void result) {
 	      super.onPostExecute(result);
+	      
 	      List<Integer> ind = Arrays.asList(0,1,2,3,4,5,12,13);
+	      
 	      for(int i=0 ;i<ind.size();i++) {
 	    	  _fields.get(ind.get(i)).setText(_stringData.get(ind.get(i)));
 	      }
+	      
     }//protected void onPostExecute(Void result)
 		
 	    
@@ -235,11 +256,12 @@ public class DashBoard extends Activity implements OnClickListener {
 
 	class goUsd extends AsyncTask<Void, Void, Void> {
 		List<String> _stringData = Arrays.asList("","","","","","","","","","","","","","");
-		/////////////////////////////////////////////////////////////////////////////////////		
 		
 		@Override
 		protected void onPreExecute() {
+			
 		      super.onPreExecute();
+		      
 		}//protected void onPreExecute()
 
 		/////////////////////////////////////////////////////////////////////////////////////
@@ -249,12 +271,12 @@ public class DashBoard extends Activity implements OnClickListener {
 			try {
 				_stringData.set(4,  priceBRENT.investing());
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				Log.i(this_marker,"error read priceBRENT.investing() in  class goUsd");
 			}
 	    	try {
 	    		_stringData.set(5, priceBRENT.usd());
 			} catch (IOException e) {
+				Log.i(this_marker,"error read priceBRENT.usd() in  class goUsd");
 			}
 		    return null;
 	    }//protected Void doInBackground(Void... params)
@@ -267,5 +289,51 @@ public class DashBoard extends Activity implements OnClickListener {
 	    	_stringData.set(5,"USD: "+_stringData.get(5));
 	    	_stringData.set(4,"brent: "+_stringData.get(4));
 	    }//protected void onPostExecute(Void result)
+		
 	}//class goUsd extends AsyncTask<Void, Void, Void>
+	
+	class goCurrT extends AsyncTask<Void, Void, Void> {
+		List<String> _stringData = Arrays.asList("","","","","","","","","","","","","","");
+		/////////////////////////////////////////////////////////////////////////////////////		
+		
+		@Override
+		protected void onPreExecute() {
+		      super.onPreExecute();
+		}//protected void onPreExecute()
+
+		/////////////////////////////////////////////////////////////////////////////////////
+		
+		@Override
+		protected Void doInBackground(Void... params) {
+			List<Integer> ind = Arrays.asList(0,2,6,4);
+			
+	    	try {
+	    		//**мой датчик
+	    		String[] x = gisFromSite.readMy();
+	    		if (x.length>6) {
+	    			for(int i=0;i<ind.size();i++){
+	    				_stringData.set(i, x[ind.get(i)].indexOf(" ")>0 
+	    						? x[ind.get(i)] : "".concat(x[ind.get(i)])) ;
+	    				Log.i(this_marker,x[ind.get(i)].indexOf(" ")>0 
+	    						? x[ind.get(i)] : "".concat(x[ind.get(i)]));
+	    			}
+	    		}
+	    	} catch (IOException e) {
+	    		Log.i(this_marker,"error read gisFromSite.readMy() in  class goCurrT");
+			}
+		    return null;
+	    }//protected Void doInBackground(Void... params)
+		
+		/////////////////////////////////////////////////////////////////////////////////////
+	    
+		@Override
+	    protected void onPostExecute(Void result) {
+	    	super.onPostExecute(result);
+	    	List<Integer> ind = Arrays.asList(0,1,2,3);
+		      for(int i=0 ;i<ind.size();i++) {
+		    	  _fields.get(ind.get(i)).setText(_stringData.get(ind.get(i)));
+		      }
+	    }//protected void onPostExecute(Void result)
+	}//class goCurrT extends AsyncTask<Void, Void, Void>
+	
 }

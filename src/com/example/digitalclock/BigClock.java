@@ -19,6 +19,8 @@ public class BigClock extends Activity{
 	ArrayList<TextView> _fields = new ArrayList<TextView>();
 	int sc =0;
 	goInd mt;
+	String this_marker = "BigClock"; //** зададим имя маркера для логов
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,8 +29,7 @@ public class BigClock extends Activity{
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 	            WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		Typeface face=Typeface.createFromAsset(getAssets(),
-                "Electron.ttf");
+		Typeface face=Typeface.createFromAsset(getAssets(), "Electron.ttf");
 		
 		/*
 		 * 0-час , 1- разделитель , 2- минута
@@ -91,7 +92,7 @@ public class BigClock extends Activity{
       			}
       		}
       		catch (InterruptedException e) {
-      			Log.i("m","error thread");
+      			Log.i(this_marker,"error thread t ");
       		}
       	}	//public void run()
 		};	//Thread t = new Thread()
@@ -134,7 +135,7 @@ public class BigClock extends Activity{
 	    	try {
 	    		_stringData.add(gisFromSite.readMy()[0]);
 	    	} catch (IOException e) {
-	    		Log.i("m","error gisFromSite.readMy()");
+	    		Log.i(this_marker,"error gisFromSite.readMy() in class goInd");
 			}
 	    	return null;
 	    }//protected Void doInBackground(Void... params)

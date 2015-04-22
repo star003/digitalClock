@@ -38,15 +38,18 @@
         </activity>
         <activity
             android:name=".FromGis"
-            android:label="@string/title_activity_from_gis" >
+            android:label="@string/title_activity_from_gis"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_from_gis" >
+            android:label="@string/title_activity_from_gis"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name=".DynUsd"
-            android:label="@string/title_activity_dyn_usd" >
+            android:label="@string/title_activity_dyn_usd"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
     </application>
 
