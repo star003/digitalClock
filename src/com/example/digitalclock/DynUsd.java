@@ -62,7 +62,7 @@ public class DynUsd extends Activity {
 						});
 	      	      	}
 	      	    } catch (InterruptedException e) {
-	      	    	Log.i(this_marker,"error thread T");
+	      	    	Log.e(this_marker,"error thread T");
 	      	    }
 			}//public void run()
 		};//Thread t = new Thread()
@@ -106,7 +106,7 @@ public class DynUsd extends Activity {
 	    	try {
 	    		_stringData = priceBRENT.usdFinam();
 	    	} catch (IOException e) {
-	    		Log.i(this_marker,"error read priceBRENT.usdFinam() in class goMCEX");
+	    		Log.e(this_marker,"error read priceBRENT.usdFinam() in class goMCEX");
 			}
 	    	return null;
 	    }//protected Void doInBackground(Void... params)
@@ -117,11 +117,14 @@ public class DynUsd extends Activity {
 	    protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 			List<Integer> ind = Arrays.asList(0,1,6,7);
-			//if (_stringData.size()==7) {
+			if (_stringData.size()>6) {
 				for (int i=0;i<ind.size();i++){
 					_fields.get(i).setText(_stringData.get(ind.get(i)));
 				}
-			//}	
+			}	
+			else {
+				Log.e(this_marker,"error _stringData < 7 in class goMCEX");
+			}
 		}//protected void onPostExecute(Void result)
 		
 	}//class goMCEX extends AsyncTask<Void, Void, Void>

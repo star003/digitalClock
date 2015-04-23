@@ -139,7 +139,7 @@ public class FromGis extends Activity {
 			try {
 				x = gisFromSite.grabGismeteo();
 			} catch (IOException e) {
-				Log.i(this_marker,"error gisFromSite.grabGismeteo() in class goGis");
+				Log.e(this_marker,"error gisFromSite.grabGismeteo() in class goGis");
 			}
 			
 			for(ArrayList<String> a:x){
