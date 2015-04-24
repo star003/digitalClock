@@ -66,7 +66,8 @@
                 android:text="+99"
                 android:textColor="@color/white"
                 android:textSize="@dimen/dim15mm"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:typeface="serif" />
 
         </LinearLayout>
 
@@ -201,7 +202,7 @@
                             android:layout_weight="3"
                             android:text="ветер"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/dim7mm" />
+                            android:textSize="@dimen/dim701mm" />
 
                     </LinearLayout>
 
@@ -220,7 +221,8 @@
                             android:text="99:99"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/dim5mm" />
+                            android:textSize="@dimen/dim10mm"
+                            android:typeface="serif" />
 
                         <TextView
                             android:id="@+id/hcPrStmp1"
@@ -231,7 +233,8 @@
                             android:text="+99"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/dim5mm" />
+                            android:textSize="@dimen/dim10mm"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -287,7 +290,7 @@
                             android:layout_weight="3"
                             android:text="ветер"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/dim7mm" />
+                            android:textSize="@dimen/dim701mm" />
 
                     </LinearLayout>
 
@@ -306,7 +309,8 @@
                             android:text="99:99"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/dim5mm" />
+                            android:textSize="@dimen/dim10mm"
+                            android:typeface="serif" />
 
                         <TextView
                             android:id="@+id/hcPrStmp2"
@@ -317,7 +321,8 @@
                             android:text="+99"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/dim5mm" />
+                            android:textSize="@dimen/dim10mm"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -371,7 +376,7 @@
                             android:layout_weight="3"
                             android:text="ветер"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/dim7mm" />
+                            android:textSize="@dimen/dim701mm" />
 
                     </LinearLayout>
 
@@ -390,7 +395,8 @@
                             android:text="99:99"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/dim5mm" />
+                            android:textSize="@dimen/dim10mm"
+                            android:typeface="serif" />
 
                         <TextView
                             android:id="@+id/hcPrStmp3"
@@ -401,7 +407,8 @@
                             android:text="+99"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/dim5mm" />
+                            android:textSize="@dimen/dim10mm"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 

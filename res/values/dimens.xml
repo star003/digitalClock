@@ -10,6 +10,7 @@
     <dimen name="dim3mm">3mm</dimen>
     <dimen name="dim5mm">5mm</dimen>
     <dimen name="dim7mm">5mm</dimen>
+    <dimen name="dim701mm">7mm</dimen>
 	<dimen name="dim10mm">10mm</dimen>
 	<dimen name="dim15mm">15mm</dimen>
 	<dimen name="dim20mm">20mm</dimen>
