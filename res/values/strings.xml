@@ -10,5 +10,6 @@
     <string name="title_activity_big_clock">BigClock</string>
     <string name="title_activity_from_gis">FromGis</string>
     <string name="title_activity_dyn_usd">DynUsd</string>
+    <string name="title_activity_clock_for_home">ClockForHome</string>
 
 </resources>

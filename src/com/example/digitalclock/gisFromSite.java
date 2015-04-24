@@ -264,6 +264,7 @@ public class gisFromSite {
 	//		5-55	секунда
 	//		6-Апрель назв.мес
 	//		7-чт день недели
+	//		8-чт день недели полностью
 	public static String[] getCurrData(){
 		Calendar currentTime = Calendar.getInstance();
 	    String[] x = {String.valueOf(currentTime.get(1))
@@ -274,6 +275,7 @@ public class gisFromSite {
 	    			,((currentTime.get(13)) >=10 ? String.valueOf(currentTime.get(13))  : "0"+String.valueOf(currentTime.get(13)))
 	    			,mont.get(currentTime.get(2))
 	    			,String.valueOf(weekdaySh.get(currentTime.get(Calendar.DAY_OF_WEEK)))
+	    			,String.valueOf(weekday.get(currentTime.get(Calendar.DAY_OF_WEEK)))
 	    			};
 	    return x;		
 	}//public String[] getCurrData()
@@ -383,7 +385,69 @@ public class gisFromSite {
 		return sp;
 	}//static public ArrayList<String> buildCalendar()
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//	описание:
+	//		покажет почасовой прогноз
+	//	структура списка:
+	//		0-Время
+	//		1-облачность,осадки
+	//		2-ссылка на картинку
+	//		3-тек температура	
+	//		4-давление	
+	//		5-напр. ветра	
+	//		6-скорость ветра	
+	//		7-ощущения
+	static public ArrayList<ArrayList<String>> getHourPrognoz() throws IOException{
+		ArrayList<ArrayList<String>> x 	= new ArrayList<ArrayList<String>>();
+		Document doc  = Jsoup.connect("http://www.gismeteo.ru/city/hourly/4298/").get();
+		Elements a0 = doc.select("tr.wrow.forecast");
+		for (Element a1 : a0){
+			ArrayList<String> x1 			= new ArrayList<String>();
+			//System.out.println("-------");
+			//**time forecast
+			Elements a2 = a1.select("th");
+			x1.add(a2.text());
+			//**осадки
+			Elements a3 = a1.select("img.png");
+			x1.add(a3.attr("alt"));
+			x1.add(a3.attr("src"));
+			//**температура
+			Elements a4 = a1.select("span.value.m_temp.c");
+			x1.add(a4.get(0).text());
+			//**давление
+			Elements a5 = a1.select("span.value.m_press.torr");
+			x1.add(a5.first().text());
+			//**ветер
+			try{
+				Elements a6 = a1.select("dt.wicon.wind1,dt.wicon.wind2,dt.wicon.wind3,dt.wicon.wind4" +
+										"dt.wicon.wind5,dt.wicon.wind6,dt.wicon.wind7,dt.wicon.wind8,dt.wicon.wind9");
+				x1.add(a6.first().text());
+			}
+			catch(NullPointerException e) {
+				x1.add("-");
+			}
+			//**сила ветер
+			Elements a7 = a1.select("span.value.m_wind.ms");
+			x1.add(a7.first().text());
+			//**ощущения
+			x1.add(a4.get(1).text());
+			x.add(x1);
+		}	
+		return x;
+	}//static public void getHourPrognoz() throws IOException
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//	описание:
+	//		вернет адрес картинки текущей погоды
+	static String getCurGismeteoPic() throws IOException{
+		Document doc  = Jsoup.connect("http://www.gismeteo.ru/city/hourly/4298/").get();
+		Elements a0 = doc.select("dt.png");
+		String ur = a0.attr("style");
+		return ur.substring(ur.indexOf("http"),ur.length()-1);
+	}//static String getCurGismeteoPic() throws IOException
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	public static void main(String[] args) throws IOException {
 		System.out.println(readMy());
 	}//public static void main(String[] args) throws IOException

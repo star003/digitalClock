@@ -149,7 +149,7 @@ public class DashBoard extends Activity implements OnClickListener {
 		
 		if (v.getId()==R.id.bch1 | v.getId()==R.id.m1 | v.getId()==R.id.brr1) {
 			Log.i(this_marker," take R.id.bch1 | v.getId()==R.id.m1 | v.getId()==R.id.brr1");
-			Intent intent = new Intent(this, BigClock.class);
+			Intent intent = new Intent(this, ClockForHome.class);
 		    startActivity(intent);
 		}
 		

@@ -51,6 +51,11 @@
             android:label="@string/title_activity_dyn_usd"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <activity
+            android:name=".ClockForHome"
+            android:label="@string/title_activity_clock_for_home" 
+            android:theme="@android:style/Theme.NoTitleBar">
+        </activity>
     </application>
 
 </manifest>

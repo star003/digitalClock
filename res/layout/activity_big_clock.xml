@@ -84,7 +84,7 @@
                 android:layout_weight="2" >
 
                 <TextView
-                    android:id="@+id/textView1"
+                    android:id="@+id/hcTime"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -94,7 +94,7 @@
                     android:textSize="@dimen/dim5mm" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/hcDate"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -111,7 +111,7 @@
                 android:layout_weight="1" >
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/hcWeekDay"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -120,7 +120,7 @@
                     android:textSize="@dimen/dim5mm" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/hcFactWing"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
