@@ -103,11 +103,22 @@ public class DynUsd extends Activity {
 	    
 		@Override
 	    protected Void doInBackground(Void... params) {
-	    	try {
-	    		_stringData = priceBRENT.usdFinam();
-	    	} catch (IOException e) {
-	    		Log.e(this_marker,"error read priceBRENT.usdFinam() in class goMCEX");
+			Log.i(this_marker,"doInBackground(Void... params) DashBoard.dyn_brent_usd = " + DashBoard.dyn_brent_usd);
+			if (DashBoard.dyn_brent_usd.equals("usd")) {
+				try {
+	    			_stringData = priceBRENT.usdFinam();
+	    		} catch (IOException e) {
+	    			Log.e(this_marker,"error read priceBRENT.usdFinam() in class goMCEX");
+	    		}
 			}
+	    	else if(DashBoard.dyn_brent_usd.equals("brent")) {
+	    		try {
+	    			_stringData = priceBRENT.dynBrentFinam();
+	    		}
+	    		catch (IOException e) {
+	    			Log.e(this_marker,"error read priceBRENT.dynBrentFinam() in class goMCEX");
+	    		}
+    		}
 	    	return null;
 	    }//protected Void doInBackground(Void... params)
 

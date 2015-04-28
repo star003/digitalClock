@@ -91,7 +91,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
+                    android:clickable="true"
                     android:gravity="center"
+                    android:onClick="onClick"
                     android:text="BRENT 00.00"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dim10mm" />

@@ -19,6 +19,8 @@ import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+
+
 public class DashBoard extends Activity implements OnClickListener {
 	ArrayList<TextView> _fields = new ArrayList<TextView>();
 	goInd mt;
@@ -26,6 +28,9 @@ public class DashBoard extends Activity implements OnClickListener {
 	goCurrT mt2;
 	int sc =0;
 	String this_marker = "DashBoard"; //** зададим имя маркера для логов
+	
+	public static String dyn_brent_usd = ""; //**переключатель показа динамики нефть/доллар
+	
 	
 	/////////////////////////////////////////////////////////////////////////////////////
 	/*
@@ -131,6 +136,14 @@ public class DashBoard extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		if (v.getId()==R.id.usd) {
 			Log.i(this_marker," take USD");
+			dyn_brent_usd = "usd";
+			Intent intent = new Intent(this, DynUsd.class);
+		    startActivity(intent);
+		}
+		
+		if (v.getId()==R.id.brent) {
+			Log.i(this_marker," take R.id.brent");
+			dyn_brent_usd = "brent";
 			Intent intent = new Intent(this, DynUsd.class);
 		    startActivity(intent);
 		}
