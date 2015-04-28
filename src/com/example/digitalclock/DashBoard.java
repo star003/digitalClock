@@ -58,7 +58,7 @@ public class DashBoard extends Activity implements OnClickListener {
 	            WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		Typeface face=Typeface.createFromAsset(getAssets(), "Electron.ttf");
 		
-		Log.i(this_marker," welcome dashboard");
+		Log.i(this_marker,"----welcome dashboard----");
 		
 		List<Integer> fldId = Arrays.asList(R.id.curT,R.id.minT,R.id.trend,R.id.maxT,
 				R.id.brent,R.id.usd,R.id.bch1,R.id.brr1,
@@ -104,7 +104,7 @@ public class DashBoard extends Activity implements OnClickListener {
         			}
         		}
         		catch (InterruptedException e) {
-        			Log.e(this_marker," error in t = new Thread()- public void run()");
+        			Log.e(this_marker,"error in t = new Thread()- public void run()");
         		}
         	}//public void run()
        };//Thread t = new Thread()
@@ -135,39 +135,39 @@ public class DashBoard extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		if (v.getId()==R.id.usd) {
-			Log.i(this_marker," take USD");
+			Log.i(this_marker,"take USD");
 			dyn_brent_usd = "usd";
 			Intent intent = new Intent(this, DynUsd.class);
 		    startActivity(intent);
 		}
 		
 		if (v.getId()==R.id.brent) {
-			Log.i(this_marker," take R.id.brent");
+			Log.i(this_marker,"take R.id.brent");
 			dyn_brent_usd = "brent";
 			Intent intent = new Intent(this, DynUsd.class);
 		    startActivity(intent);
 		}
 		
 		if (v.getId()==R.id.curT) {
-			Log.i(this_marker," R.id.curT");
+			Log.i(this_marker,"R.id.curT");
 			mt2 = new goCurrT();
 			mt2.execute();
 		}
 		
 		if (v.getId()==R.id.prg) {
-			Log.i(this_marker," R.id.prg");
+			Log.i(this_marker,"R.id.prg");
 			Intent intent = new Intent(this, FromGis.class);
 		    startActivity(intent);
 		}
 		
 		if (v.getId()==R.id.bch1 | v.getId()==R.id.m1 | v.getId()==R.id.brr1) {
-			Log.i(this_marker," take R.id.bch1 | v.getId()==R.id.m1 | v.getId()==R.id.brr1");
+			Log.i(this_marker,"take R.id.bch1 | v.getId()==R.id.m1 | v.getId()==R.id.brr1");
 			Intent intent = new Intent(this, ClockForHome.class);
 		    startActivity(intent);
 		}
 		
 		if (v.getId()==R.id.mont) {
-			Log.i(this_marker," take R.id.mont");
+			Log.i(this_marker,"take R.id.mont");
 			Intent intent = new Intent(this, MainActivity.class);
 		    startActivity(intent);
 		}
@@ -189,24 +189,43 @@ public class DashBoard extends Activity implements OnClickListener {
 		@Override
 	    protected Void doInBackground(Void... params) {
 			List<Integer> ind = Arrays.asList(0,2,6,4);
+			//**нужно предусмотреть сохранение прошлых показаний на случай , если не прочитает новые
 			
 	    	try {
+	    		
 	    		//**мой датчик
 	    		String[] x = gisFromSite.readMy();
 	    		
 	    		if (x.length>6) {
 	    			
-	    			for(int i=0;i<ind.size();i++){
+	    			if (x[6].contains("u") | x[6].contains("d") | x[6].contains("u") ) {
+	    				//**все ок , заполним графы
+	    				Log.i(this_marker,"data in my weather...ок " + x[6]);
 	    				
-	    				_stringData.set(i, x[ind.get(i)].indexOf(" ")>0 
-	    						? x[ind.get(i)] : "".concat(x[ind.get(i)])) ;
-	    				
-	    				Log.i(this_marker,x[ind.get(i)].indexOf(" ")>0 
-	    						? x[ind.get(i)] : "".concat(x[ind.get(i)]));
+	    				for(int i=0;i<ind.size();i++){
+		    				
+		    				_stringData.set(i, x[ind.get(i)].indexOf(" ")>0 
+		    						? x[ind.get(i)] : "".concat(x[ind.get(i)])) ;
+		    				
+		    				Log.i(this_marker,x[ind.get(i)].indexOf(" ")>0 
+		    						? x[ind.get(i)] : "".concat(x[ind.get(i)]));
+		    				
+		    			}
 	    				
 	    			}
-	    		}
+	    			
+	    			else {
+	    				//**вернет старые данные
+	    				Log.i(this_marker,"data in my weather...fail " + x[6]);
+	    				for (int i = 0 ;i<4;i++){
+	    					_stringData.set(i, _fields.get(i).getText().toString()); 
+	    				}
+	    				
+	    			}//if (x[4].equals("n") | x[4].equals("d") | x[4].equals("u"))
+	    			
+	    		}//if (x.length>6)
 	    		else {
+	    			
 	    			Log.e(this_marker,"error _stringData in class goInd less 7 ");
 	    		}
 	    	} catch (IOException e) {
@@ -326,13 +345,34 @@ public class DashBoard extends Activity implements OnClickListener {
 	    	try {
 	    		//**мой датчик
 	    		String[] x = gisFromSite.readMy();
+	    		
 	    		if (x.length>6) {
-	    			for(int i=0;i<ind.size();i++){
-	    				_stringData.set(i, x[ind.get(i)].indexOf(" ")>0 
+	    			
+	    			Log.i(this_marker," data x[6] : "+x[6]+" ok ");
+	    			
+	    			if (x[6].contains("n") | x[6].contains("d") | x[6].contains("u") ) {
+	    				
+	    				for(int i=0;i<ind.size();i++){
+	    				
+	    					_stringData.set(i, x[ind.get(i)].indexOf(" ")>0 
 	    						? x[ind.get(i)] : "".concat(x[ind.get(i)])) ;
-	    				Log.i(this_marker,x[ind.get(i)].indexOf(" ")>0 
+	    					
+	    					Log.i(this_marker,x[ind.get(i)].indexOf(" ")>0 
 	    						? x[ind.get(i)] : "".concat(x[ind.get(i)]));
+	    				}
+	    				
 	    			}
+	    			else {
+	    				//**вернет старые данные
+	    				Log.i(this_marker,"data in my weather...fail " + x[6]);
+	    				
+	    				for (int i = 0 ;i<4;i++){
+	    					
+	    					_stringData.set(i, _fields.get(i).getText().toString()); 
+	    					
+	    				}
+	    				
+	    			}//if (x[4].equals("n") | x[4].equals("d") | x[4].equals("u"))
 	    		}
 	    	} catch (IOException e) {
 	    		Log.e(this_marker,"error read gisFromSite.readMy() in  class goCurrT");
