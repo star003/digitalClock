@@ -283,13 +283,13 @@ public class gisFromSite {
 	///////////////////////////////////////////////////////////////////////////////////
 	
 	static ArrayList<String> getPokaz(Document doc,String prm){
-		int i=0;
+		//int i=0;
 		ArrayList<String> x = new ArrayList<String>();
 		Elements tm = doc.select(prm);
 		for(Element v:tm) {
 			
 			x.add(v.text());
-			i++;
+			//i++;
 		}
 		return x;
 	}//static ArrayList<String> getPokaz(Document doc,String prm)
