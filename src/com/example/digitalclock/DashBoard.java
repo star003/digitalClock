@@ -60,9 +60,10 @@ public class DashBoard extends Activity implements OnClickListener {
 		
 		Log.i(this_marker,"----welcome dashboard----");
 		
-		List<Integer> fldId = Arrays.asList(R.id.curT,R.id.minT,R.id.trend,R.id.maxT,
-				R.id.brent,R.id.usd,R.id.bch1,R.id.brr1,
-				R.id.m1,R.id.weekDay,R.id.day,R.id.mont,R.id.prg,R.id.astr);
+		List<Integer> fldId = Arrays.asList(R.id.curT	,R.id.minT		,R.id.trend	,R.id.maxT,
+											R.id.brent	,R.id.usd		,R.id.bch1	,R.id.brr1,
+											R.id.m1		,R.id.weekDay	,R.id.day	,R.id.mont,
+											R.id.prg	,R.id.astr);
 		
 		for (int i=0;i<fldId.size();i++){
 			TextView fff = (TextView)findViewById(fldId.get(i));
@@ -77,23 +78,20 @@ public class DashBoard extends Activity implements OnClickListener {
         	@Override
         	public void run() {
         		try {
+        			//**при первом пуске , заполним поля дата - время
+        			refreshTime();
+					
         			while (!isInterrupted()) {
-        				Thread.sleep(1000);
+        				Thread.sleep(60000); //**обновимся раз в 60 сек
         				runOnUiThread(new Runnable() {
         					@Override
         					public void run() {
+        						
         						sc ++;
-        						Calendar currentTime = Calendar.getInstance();
-        						_fields.get(6).setText(((currentTime.get(11)) >=10 ? String.valueOf(currentTime.get(11))  : "0"+String.valueOf(currentTime.get(11))));
-        						_fields.get(8).setText(((currentTime.get(12)) >=10 ? String.valueOf(currentTime.get(12))  : "0"+String.valueOf(currentTime.get(12))));
-        						
-        						String[] xx = gisFromSite.getCurrData();
-        						
-        						_fields.get(9).setText(xx[7]);
-        						_fields.get(10).setText(xx[2]);
-        						_fields.get(11).setText(xx[6]);
+        						refreshTime();
         	      	      
-        						if (sc>300) {
+        						if (sc>5) {
+        							//**раз в 5 минут обновим показания
         							sc = 0;
         							mt = new goInd();
         							mt.execute();
@@ -110,6 +108,20 @@ public class DashBoard extends Activity implements OnClickListener {
        };//Thread t = new Thread()
        t.start();
     }//protected void onCreate(Bundle savedInstanceState)
+
+	/////////////////////////////////////////////////////////////////////////////////////
+	
+	void refreshTime() {
+		Calendar currentTime = Calendar.getInstance();
+		_fields.get(6).setText(((currentTime.get(11)) >=10 ? String.valueOf(currentTime.get(11))  : "0"+String.valueOf(currentTime.get(11))));
+		_fields.get(8).setText(((currentTime.get(12)) >=10 ? String.valueOf(currentTime.get(12))  : "0"+String.valueOf(currentTime.get(12))));
+		
+		String[] xx = gisFromSite.getCurrData();
+		
+		_fields.get(9).setText(xx[7]);
+		_fields.get(10).setText(xx[2]);
+		_fields.get(11).setText(xx[6]);
+	}//void refreshTime()
 
 	/////////////////////////////////////////////////////////////////////////////////////
 	
@@ -176,7 +188,7 @@ public class DashBoard extends Activity implements OnClickListener {
 	/////////////////////////////////////////////////////////////////////////////////////
 
 	class goInd extends AsyncTask<Void, Void, Void> {
-		List<String> _stringData = Arrays.asList("-","err","-","err","-","err","-","err","err","err","err","err","err","err");
+		List<String> _stringData = Arrays.asList("","","","","","","","","","","","","","");
 		/////////////////////////////////////////////////////////////////////////////////////
 		
 		@Override
@@ -227,9 +239,12 @@ public class DashBoard extends Activity implements OnClickListener {
 	    		else {
 	    			
 	    			Log.e(this_marker,"error _stringData in class goInd less 7 ");
+	    			
 	    		}
 	    	} catch (IOException e) {
+	    		
 	    		Log.e(this_marker,"error read gisFromSite.readMy() in class goInd");
+	    		
 			}
 	    	
 	    	try {
@@ -244,7 +259,9 @@ public class DashBoard extends Activity implements OnClickListener {
 				Log.e(this_marker,"error read priceBRENT.usd() in class goInd");
 			}
 	    	
-	    	//**прогноз погоды
+	    	//**прогноз погоды (не нужен , убрал)
+	    	_stringData.set(12,"<прогноз на неделю>");
+	    	/*
 	    	try {
 	    		ArrayList<String> h = gisFromSite.getPrognozV2();
 	    		if (h.size()>3) {
@@ -253,8 +270,11 @@ public class DashBoard extends Activity implements OnClickListener {
 	    	}catch (IOException e) {
 	    		Log.e(this_marker,"error read gisFromSite.getPrognozV2() in class goInd");
 			}
+			*/
 	    	
-	    	//**Долгота дня
+	    	//**Долгота дня (не нужен , убрал)
+	    	_stringData.set(13,"");
+	    	/*
 	    	String[] ast;
 			try {
 				ast = gisFromSite.getAstronomy();
@@ -269,6 +289,7 @@ public class DashBoard extends Activity implements OnClickListener {
 			} catch (IOException e) {
 				Log.e(this_marker,"error read gisFromSite.getAstronomy() in class goInd");
 			}
+			*/
 	    	return null;
 	    }//protected Void doInBackground(Void... params)
 
@@ -321,8 +342,8 @@ public class DashBoard extends Activity implements OnClickListener {
 		@Override
 	    protected void onPostExecute(Void result) {
 	    	super.onPostExecute(result);
-	    	_stringData.set(5,"USD: "+_stringData.get(5));
-	    	_stringData.set(4,"brent: "+_stringData.get(4));
+	    	_stringData.set(5,"USD: "	+_stringData.get(5));
+	    	_stringData.set(4,"brent: "	+_stringData.get(4));
 	    }//protected void onPostExecute(Void result)
 		
 	}//class goUsd extends AsyncTask<Void, Void, Void>

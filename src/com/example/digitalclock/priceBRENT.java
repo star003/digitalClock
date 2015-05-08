@@ -19,6 +19,7 @@ import org.jsoup.select.Elements;
 //		получение данных о цене на нефть
 
 public class priceBRENT {
+	
 	static ArrayList<String> item = new ArrayList<String>();
 	static ArrayList<String> itemVal = new ArrayList<String>();
 	final String url = "http://www.finam.ru/";
@@ -125,11 +126,15 @@ public class priceBRENT {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public static String usd() throws IOException {
-		Document doc  = Jsoup.connect("http://www.finam.ru")
+		try {
+			Document doc  = Jsoup.connect("http://www.finam.ru")
 				.userAgent("Mozilla")
 				.get();
-		Elements metaElements = doc.select("a.dark.no");
-		return metaElements.first().text();
+			Elements metaElements = doc.select("a.dark.no");
+			return metaElements.first().text();
+		} catch (IOException e) {
+			return "";
+		}	
 	}//public static String usd() throws IOException
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
