@@ -452,4 +452,17 @@ public class gisFromSite {
 		System.out.println(readMy());
 	}//public static void main(String[] args) throws IOException
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//	описание:
+	//		магнитные бури /цикл по 8 значений: 0,3,6,9,12,15,18,21 ч/
+	static public ArrayList<String> getMagnetic() throws IOException{
+		ArrayList<String> x1 = new ArrayList<String>();
+		Document doc  = Jsoup.connect("http://www.gismeteo.ru/city/gm/4298/").get();
+		Elements a = doc.select("div.gm1,div.gm2,div.gm3,div.gm4,div.gm5,div.gm6,div.gm7,div.gm8");
+		for (Element a1 : a) {
+			x1.add(a1.text());
+		}
+		return x1;
+	}//static public ArrayList<ArrayList<String>> getMagnetic() throws IOException
+	
 }//public class gisFromSite

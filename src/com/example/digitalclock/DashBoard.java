@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -23,6 +24,9 @@ import android.widget.TextView;
 
 public class DashBoard extends Activity implements OnClickListener {
 	ArrayList<TextView> _fields = new ArrayList<TextView>();
+	ArrayList<TextView> _fieldsMg = new ArrayList<TextView>();
+	List<Integer> _color = Arrays.asList(R.color.gm1,R.color.gm2,R.color.gm3,R.color.gm4,
+			R.color.gm5,R.color.gm6,R.color.gm7,R.color.gm8);
 	goInd mt;
 	goUsd mt1;
 	goCurrT mt2;
@@ -64,12 +68,23 @@ public class DashBoard extends Activity implements OnClickListener {
 											R.id.brent	,R.id.usd		,R.id.bch1	,R.id.brr1,
 											R.id.m1		,R.id.weekDay	,R.id.day	,R.id.mont,
 											R.id.prg	,R.id.astr);
+		List<Integer> fldMg = Arrays.asList(R.id.mg11,R.id.mg12,R.id.mg13,R.id.mg14,R.id.mg15,R.id.mg16,R.id.mg17,R.id.mg18,
+											R.id.mg21,R.id.mg22,R.id.mg23,R.id.mg24,R.id.mg25,R.id.mg26,R.id.mg27,R.id.mg28,
+											R.id.mg31,R.id.mg32,R.id.mg33,R.id.mg34,R.id.mg35,R.id.mg36,R.id.mg37,R.id.mg38);
 		
 		for (int i=0;i<fldId.size();i++){
 			TextView fff = (TextView)findViewById(fldId.get(i));
 			fff.setTypeface(face);
 			_fields.add(fff);
 		}
+		
+		for (int i = 0; i < fldMg.size(); i++) {
+			TextView fff = (TextView)findViewById(fldMg.get(i));
+			fff.setText("-");
+			_fieldsMg.add(fff);
+		} 
+			
+		
 		
 		mt = new goInd();
        	mt.execute();
@@ -188,7 +203,11 @@ public class DashBoard extends Activity implements OnClickListener {
 	/////////////////////////////////////////////////////////////////////////////////////
 
 	class goInd extends AsyncTask<Void, Void, Void> {
-		List<String> _stringData = Arrays.asList("","","","","","","","","","","","","","");
+		List<String> _stringData 	= Arrays.asList("","","","","","","","","","","","","","");
+		List<String> _stringDataMG 	= Arrays.asList("","","","","","","","",
+													"","","","","","","","",
+													"","","","","","","","");
+		
 		/////////////////////////////////////////////////////////////////////////////////////
 		
 		@Override
@@ -228,7 +247,7 @@ public class DashBoard extends Activity implements OnClickListener {
 	    			
 	    			else {
 	    				//**вернет старые данные
-	    				Log.i(this_marker,"data in my weather...fail " + x[6]);
+	    				Log.e(this_marker,"data in my weather...fail " + x[6]);
 	    				for (int i = 0 ;i<4;i++){
 	    					_stringData.set(i, _fields.get(i).getText().toString()); 
 	    				}
@@ -290,19 +309,49 @@ public class DashBoard extends Activity implements OnClickListener {
 				Log.e(this_marker,"error read gisFromSite.getAstronomy() in class goInd");
 			}
 			*/
+	    	
+	    	//**геомагнитная обстановка
+	    	try {
+				ArrayList<String> x= gisFromSite.getMagnetic();
+				if (x.size()>23) { 
+					for(int img = 0;img < x.size();img++) {
+						_stringDataMG.set(img, x.get(img));
+					}
+					Log.i(this_marker,"data magnetic ... ok");
+				}	
+				else {
+					Log.e(this_marker,"error read gisFromSite.getMagnetic()  x.size()<23 in task goInd");
+				}
+				
+			} catch (IOException e) {
+				Log.e(this_marker,"error read gisFromSite.getMagnetic() in class goInd");
+			}
+	    	
 	    	return null;
 	    }//protected Void doInBackground(Void... params)
 
 		/////////////////////////////////////////////////////////////////////////////////////
 	    
+		@SuppressLint("ResourceAsColor")
 		@Override
 	    protected void onPostExecute(Void result) {
 	      super.onPostExecute(result);
 	      
 	      List<Integer> ind = Arrays.asList(0,1,2,3,4,5,12,13);
 	      
-	      for(int i=0 ;i<ind.size();i++) {
-	    	  _fields.get(ind.get(i)).setText(_stringData.get(ind.get(i)));
+	      try {
+	    	  for(int i=0 ;i<ind.size();i++) {
+	    		  _fields.get(ind.get(i)).setText(_stringData.get(ind.get(i)));
+	    	  }
+	      
+	    	  for(int i = 0 ; i<_stringDataMG.size();i++){
+	    		  _fieldsMg.get(i).setText(_stringDataMG.get(i));
+	    		  _fieldsMg.get(i).setBackgroundResource(_color.get(Integer.valueOf(_stringDataMG.get(i))));
+	    	  }
+	    	  
+	      }
+	      catch (NumberFormatException e3){
+	    	  Log.e(this_marker,"ошибка вывода в форму, представление строка - число (class goInd) ");
 	      }
 	      
     }//protected void onPostExecute(Void result)
@@ -342,8 +391,13 @@ public class DashBoard extends Activity implements OnClickListener {
 		@Override
 	    protected void onPostExecute(Void result) {
 	    	super.onPostExecute(result);
-	    	_stringData.set(5,"USD: "	+_stringData.get(5));
-	    	_stringData.set(4,"brent: "	+_stringData.get(4));
+	    	try {
+	    		_stringData.set(5,"USD: "	+_stringData.get(5));
+	    		_stringData.set(4,"brent: "	+_stringData.get(4));
+	    	}
+	    	catch (NumberFormatException e3){
+		    	  Log.e(this_marker,"ошибка вывода в форму, представление строка - число (class goUsd) ");
+		    }
 	    }//protected void onPostExecute(Void result)
 		
 	}//class goUsd extends AsyncTask<Void, Void, Void>
@@ -406,10 +460,15 @@ public class DashBoard extends Activity implements OnClickListener {
 		@Override
 	    protected void onPostExecute(Void result) {
 	    	super.onPostExecute(result);
-	    	List<Integer> ind = Arrays.asList(0,1,2,3);
-		      for(int i=0 ;i<ind.size();i++) {
-		    	  _fields.get(ind.get(i)).setText(_stringData.get(ind.get(i)));
-		      }
+	    	try {
+	    		List<Integer> ind = Arrays.asList(0,1,2,3);
+	    		for(int i=0 ;i<ind.size();i++) {
+	    			_fields.get(ind.get(i)).setText(_stringData.get(ind.get(i)));
+	    		}
+	    	}
+	    	catch (NumberFormatException e3){
+	    		Log.e(this_marker,"ошибка вывода в форму, представление строка - число (class goCurrT) ");
+		    }
 	    }//protected void onPostExecute(Void result)
 		
 	}//class goCurrT extends AsyncTask<Void, Void, Void>
