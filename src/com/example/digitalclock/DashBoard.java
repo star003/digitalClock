@@ -86,8 +86,6 @@ public class DashBoard extends Activity implements OnClickListener {
 			fff.setTextColor(R.color.black);
 			_fieldsMg.add(fff);
 		} 
-			
-		
 		
 		mt = new goInd();
        	mt.execute();
