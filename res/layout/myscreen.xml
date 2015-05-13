@@ -213,64 +213,88 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
+                                android:background="@color/gm0"
+                                android:gravity="center"
                                 android:text="0:"
-                                android:textAppearance="?android:attr/textAppearanceLarge" />
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/black" />
 
 						<TextView
 						    android:id="@+id/mg02"
 						    android:layout_width="match_parent"
 						    android:layout_height="match_parent"
 						    android:layout_weight="1"
+						    android:background="@color/gm0"
+						    android:gravity="center"
 						    android:text="3:"
-						    android:textAppearance="?android:attr/textAppearanceLarge" />
+						    android:textAppearance="?android:attr/textAppearanceLarge"
+						    android:textColor="@color/black" />
 
 						<TextView
 						    android:id="@+id/mg03"
 						    android:layout_width="match_parent"
 						    android:layout_height="match_parent"
 						    android:layout_weight="1"
+						    android:background="@color/gm0"
+						    android:gravity="center"
 						    android:text="6:"
-						    android:textAppearance="?android:attr/textAppearanceLarge" />
+						    android:textAppearance="?android:attr/textAppearanceLarge"
+						    android:textColor="@color/black" />
 
 						<TextView
 						    android:id="@+id/mg04"
 						    android:layout_width="match_parent"
 						    android:layout_height="match_parent"
 						    android:layout_weight="1"
+						    android:background="@color/gm0"
+						    android:gravity="center"
 						    android:text="9:"
-						    android:textAppearance="?android:attr/textAppearanceLarge" />
+						    android:textAppearance="?android:attr/textAppearanceLarge"
+						    android:textColor="@color/black" />
 
 						<TextView
 						    android:id="@+id/mg05"
 						    android:layout_width="match_parent"
 						    android:layout_height="match_parent"
 						    android:layout_weight="1"
+						    android:background="@color/gm0"
+						    android:gravity="center"
 						    android:text="12:"
-						    android:textAppearance="?android:attr/textAppearanceLarge" />
+						    android:textAppearance="?android:attr/textAppearanceLarge"
+						    android:textColor="@color/black" />
 
 						<TextView
 						    android:id="@+id/mg06"
 						    android:layout_width="match_parent"
 						    android:layout_height="match_parent"
 						    android:layout_weight="1"
+						    android:background="@color/gm0"
+						    android:gravity="center"
 						    android:text="15:"
-						    android:textAppearance="?android:attr/textAppearanceLarge" />
+						    android:textAppearance="?android:attr/textAppearanceLarge"
+						    android:textColor="@color/black" />
 
 						<TextView
 						    android:id="@+id/mg07"
 						    android:layout_width="match_parent"
 						    android:layout_height="match_parent"
 						    android:layout_weight="1"
+						    android:background="@color/gm0"
+						    android:gravity="center"
 						    android:text="18:"
-						    android:textAppearance="?android:attr/textAppearanceLarge" />
+						    android:textAppearance="?android:attr/textAppearanceLarge"
+						    android:textColor="@color/black" />
 
 						<TextView
 						    android:id="@+id/mg08"
 						    android:layout_width="match_parent"
 						    android:layout_height="match_parent"
 						    android:layout_weight="1"
+						    android:background="@color/gm0"
+						    android:gravity="center"
 						    android:text="21:"
-						    android:textAppearance="?android:attr/textAppearanceLarge" />
+						    android:textAppearance="?android:attr/textAppearanceLarge"
+						    android:textColor="@color/black" />
 
                         </TableRow>
                         

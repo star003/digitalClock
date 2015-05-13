@@ -53,6 +53,7 @@ public class DashBoard extends Activity implements OnClickListener {
 	_fields.add((TextView)findViewById(R.id.prg));//12
 	_fields.add((TextView)findViewById(R.id.astr));//13
 	*/
+	@SuppressLint("ResourceAsColor")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -81,6 +82,8 @@ public class DashBoard extends Activity implements OnClickListener {
 		for (int i = 0; i < fldMg.size(); i++) {
 			TextView fff = (TextView)findViewById(fldMg.get(i));
 			fff.setText("-");
+			fff.setGravity(17);
+			fff.setTextColor(R.color.black);
 			_fieldsMg.add(fff);
 		} 
 			
@@ -346,7 +349,7 @@ public class DashBoard extends Activity implements OnClickListener {
 	      
 	    	  for(int i = 0 ; i<_stringDataMG.size();i++){
 	    		  _fieldsMg.get(i).setText(_stringDataMG.get(i));
-	    		  _fieldsMg.get(i).setBackgroundResource(_color.get(Integer.valueOf(_stringDataMG.get(i))));
+	    		  _fieldsMg.get(i).setBackgroundResource(_color.get(Integer.valueOf(_stringDataMG.get(i))-1));
 	    	  }
 	    	  
 	      }
