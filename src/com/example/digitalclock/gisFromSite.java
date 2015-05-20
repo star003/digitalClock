@@ -15,6 +15,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import android.util.Log;
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -301,7 +303,7 @@ public class gisFromSite {
 		Elements cloudness = doc.select(prm);
 		Elements tm = cloudness.select("img");
 		for(Element v:tm) {
-			x.add((v.attr("src")));
+			x.add("http:"+v.attr("src"));
 		}
 		return x;
 	}//static ArrayList<String> getImg(Document doc,String prm)
@@ -410,7 +412,9 @@ public class gisFromSite {
 			//**осадки
 			Elements a3 = a1.select("img.png");
 			x1.add(a3.attr("alt"));
-			x1.add(a3.attr("src"));
+			String ss = a3.attr("src");
+			
+			x1.add("http:"+ss);
 			//**температура
 			Elements a4 = a1.select("span.value.m_temp.c");
 			x1.add(a4.get(0).text());
@@ -440,10 +444,13 @@ public class gisFromSite {
 	//	описание:
 	//		вернет адрес картинки текущей погоды
 	static String getCurGismeteoPic() throws IOException{
+		Log.i("gisFromSite","getCurGismeteoPic()...старт ");
 		Document doc  = Jsoup.connect("http://www.gismeteo.ru/city/hourly/4298/").get();
 		Elements a0 = doc.select("dt.png");
 		String ur = a0.attr("style");
-		return ur.substring(ur.indexOf("http"),ur.length()-1);
+		Log.i("gisFromSite","getCurGismeteoPic() ur.substring(ur.indexOf(http),ur.length()-1) ... "+ur);
+		Log.i("gisFromSite","return ... "+ur.substring(ur.indexOf("//"),ur.length()-1));
+		return "http://"+ur.substring(ur.indexOf("//")+2,ur.length()-1);
 	}//static String getCurGismeteoPic() throws IOException
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

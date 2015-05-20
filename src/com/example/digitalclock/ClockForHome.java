@@ -31,12 +31,17 @@ public class ClockForHome extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_clock_for_home);
+		Log.i(this_marker,"welcome clockForHome form... ");
+		
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 	            WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		
 		Typeface face=Typeface.createFromAsset(getAssets(), "Electron.ttf");
+		
 		//**описание текстовых полей
 		//**c 8 го идет суточный прогноз
+		
 		List<Integer> fldId = Arrays.asList(R.id.hcTime , R.id.hcDate , R.id.hcWeekDay
 											,R.id.hcCurrT , R.id.hcFactPrs , R.id.hcFactHmd
 											,R.id.hcFactWing , R.id.hcFactCloud,
@@ -61,6 +66,8 @@ public class ClockForHome extends Activity {
 			ImageView fff = (ImageView)findViewById(fldIdGr.get(i));
 			_fieldsI.add(fff);
 		}
+		
+		Log.i(this_marker,"все поля заполнены , расчитаем данные для вывода ");
 		
 		mt = new goData();
 		mt.execute();
@@ -137,14 +144,18 @@ public class ClockForHome extends Activity {
 
 		@Override
 		protected Void doInBackground(Void... params) {
+			Log.i(this_marker,"запуск class goData ");
 			try {
+				Log.i(this_marker,"читаем gisFromSite.readMy() ");
 				_stringData.add(gisFromSite.readMy()[0]);
+				Log.i(this_marker,"gisFromSite.readMy()...успех ");
 				
 			} catch (IOException e) {
-				Log.i(this_marker,"error gisFromSite.readMy() in class goData");
+				Log.e(this_marker,"ошибка gisFromSite.readMy() in class goData");
 			}
 			
 			try {
+				Log.i(this_marker,"gisFromSite.grabGismeteo()...старт ");
 				ArrayList<ArrayList<String>> x = gisFromSite.grabGismeteo();
 				if (x.size()>6) {
 					//1+2 , 4 ,5+6 
@@ -163,9 +174,10 @@ public class ClockForHome extends Activity {
 					
 					Log.i(this_marker,"x.size() = "+String.valueOf(x.size()));
 				}
+				Log.i(this_marker,"gisFromSite.grabGismeteo()...успех ");
 				
 			} catch (IOException e) {
-				Log.i(this_marker,"error gisFromSite.grabGismeteo() in class goData");
+				Log.e(this_marker,"gisFromSite.grabGismeteo() ... ошибка in class goData");
 				_stringData.add("err");
 				_stringData.add("err");
 				_stringData.add("err");
@@ -175,6 +187,7 @@ public class ClockForHome extends Activity {
 			//_stringData.add();
 			ArrayList<ArrayList<String>> x1;
 			try {
+				Log.i(this_marker,"gisFromSite.getHourPrognoz()...старт ");
 				List<Integer> ind = Arrays.asList(0,2,3,5,6);
 				//**от 5 до 46
 				x1 = gisFromSite.getHourPrognoz();
@@ -183,15 +196,17 @@ public class ClockForHome extends Activity {
 						_stringDataHP.add(x1.get(i).get(ind.get(j)));
 					}
 				}
-				
+				Log.i(this_marker,"gisFromSite.getHourPrognoz()...успех ");
 			} catch (IOException e) {
-				Log.i(this_marker,"error gisFromSite.getHourPrognoz() in class goData");
+				Log.e(this_marker,"error gisFromSite.getHourPrognoz() in class goData");
 			}
 			
 			try {
+				Log.i(this_marker,"gisFromSite.getCurGismeteoPic()...старт ");
 				_gisPick = gisFromSite.getCurGismeteoPic();
+				Log.i(this_marker,"gisFromSite.getCurGismeteoPic()...успех ");
 			} catch (IOException e) {
-				Log.i(this_marker,"error gisFromSite.getCurGismeteoPic() in class goData");
+				Log.e(this_marker,"gisFromSite.getCurGismeteoPic()...ошибка in class goData");
 			}
 			return null;
 		}//protected Void doInBackground(Void... params)
@@ -201,6 +216,8 @@ public class ClockForHome extends Activity {
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
+			Log.i(this_marker,"class goData заполнение полей...старт ");
+			Log.i(this_marker,"class goData заполнение полей...старт текстовые поля ");
 			//String gr = unit.fromBaseUnitsAsString(this.angle);
 			_fields.get(3).setText( _stringData.get(0).indexOf("-")>0 
 					? _stringData.get(0)+ ((char) 0x00B0)+"C" : "+"+ _stringData.get(0)+ ((char) 0x00B0));
@@ -209,11 +226,14 @@ public class ClockForHome extends Activity {
 			_fields.get(5).setText(_stringData.get(5));
 			_fields.get(6).setText(_stringData.get(4));
 			
+			Log.i(this_marker,"class goData заполнение полей...успех текстовые поля ");
+			
 			ImageView ggg = _fieldsI.get(0); 
 			new DownloadImageTask((ImageView) ggg).execute(_gisPick);
 			
-					
+			Log.i(this_marker,"class goData _stringDataHP.size()..."+String.valueOf(_stringDataHP.size()));		
 			if(_stringDataHP.size()>14){
+				Log.i(this_marker,"class goData заполнение графики...старт");
 				for(int i = 0;i<3;i++){
 					_fields.get(8+i*3).setText(_stringDataHP.get(i*5));	
 					_fields.get(9+i*3).setText(_stringDataHP.get(i*5+2));
@@ -222,9 +242,10 @@ public class ClockForHome extends Activity {
 					new DownloadImageTask((ImageView) ggg1).execute(_stringDataHP.get(i*5+1));
 					Log.i(this_marker,"URL: "+_stringDataHP.get(i*5+2));
 				}
+				Log.i(this_marker,"class goData заполнение графики...успех");
 			}
 			//**вывод прогнозов
-			
+			Log.i(this_marker,"class goData заполнение полей...успех ");
 		}//protected void onPostExecute(Void result)
 
 	}//class goData extends AsyncTask<Void, Void, Void>

@@ -23,6 +23,7 @@ import android.widget.TextView;
 public class FromGis extends Activity {
 	ArrayList<TextView> _fields 	= new ArrayList<TextView>();
 	ArrayList<ImageView> _fieldsI 	= new ArrayList<ImageView>();
+	
 	int sc =0;
 	goGis mt;
 	String this_marker = "FromGis"; //** зададим имя маркера для логов
@@ -32,10 +33,13 @@ public class FromGis extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.activity_from_gis);
+		
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 	            WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		
 		
 		/*
 		 * 0-3 заголовки
