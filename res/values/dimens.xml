@@ -7,6 +7,8 @@
     <dimen name="tabloDim10mm">10mm</dimen>
     <dimen name="tabloDim20mm">20mm</dimen>
     <dimen name="tabloDim3mm">3mm</dimen>
+    <dimen name="dim01mm">1mm</dimen>
+    <dimen name="dim02mm">2mm</dimen>
     <dimen name="dim3mm">3mm</dimen>
     <dimen name="dim5mm">5mm</dimen>
     <dimen name="dim7mm">5mm</dimen>

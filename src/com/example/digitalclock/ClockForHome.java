@@ -10,6 +10,8 @@ import java.util.List;
 
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
@@ -27,11 +29,30 @@ public class ClockForHome extends Activity {
 	goData mt;
 	String this_marker = "ClockForHome"; //** зададим имя маркера для логов
 	
+	boolean this_small 	= true;
+	private static final String APP_PREFERENCES = "digitalClock";
+    private SharedPreferences mSettings;
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_clock_for_home);
+		
+		mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+		
+		if(mSettings.contains("APP_PREFERENCES_SMALL_SCREEN_SIZE")) {
+			this_small = mSettings.getBoolean("APP_PREFERENCES_SMALL_SCREEN_SIZE",false );
+		}
+		
 		Log.i(this_marker,"welcome clockForHome form... ");
+		
+		if (this_small) {
+			setContentView(R.layout.activity_small_clock_for_home);
+			Log.i(this_marker,"small form select... ");
+		}
+		else {
+			setContentView(R.layout.activity_clock_for_home);
+			Log.i(this_marker,"big form select... ");
+		}
 		
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,

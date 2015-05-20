@@ -7,6 +7,8 @@ import java.util.List;
 
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,10 +30,27 @@ public class DynUsd extends Activity {
 	
 	String this_marker = "DynUsd"; //** зададим имя маркера для логов
 	
+	boolean this_small 	= true;
+	private static final String APP_PREFERENCES = "digitalClock";
+    private SharedPreferences mSettings;
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_dyn_usd);
+		
+		mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+		
+		if(mSettings.contains("APP_PREFERENCES_SMALL_SCREEN_SIZE")) {
+			this_small = mSettings.getBoolean("APP_PREFERENCES_SMALL_SCREEN_SIZE",false );
+		}
+		
+		if (this_small) {
+			setContentView(R.layout.activity_small_dyn_usd);
+		}
+		else {
+			setContentView(R.layout.activity_dyn_usd);
+		}
+		
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 	            WindowManager.LayoutParams.FLAG_FULLSCREEN);

@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -28,13 +30,28 @@ public class FromGis extends Activity {
 	goGis mt;
 	String this_marker = "FromGis"; //** зададим имя маркера для логов
 	
+	boolean this_small 	= true;
+	private static final String APP_PREFERENCES = "digitalClock";
+    private SharedPreferences mSettings;
+    
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.activity_from_gis);
+		mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+		
+		if(mSettings.contains("APP_PREFERENCES_SMALL_SCREEN_SIZE")) {
+			this_small = mSettings.getBoolean("APP_PREFERENCES_SMALL_SCREEN_SIZE",false );
+		}
+		
+		if (this_small) {
+			setContentView(R.layout.activity_small_from_gis);
+		}
+		else {
+			setContentView(R.layout.activity_from_gis);
+		}
 		
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -162,7 +179,12 @@ public class FromGis extends Activity {
 			for (int i1 = 0;i1<_stringData.size();i1++){
 				if(i1<4 | i1>29) {
 					//**вывод текстовой информации
-					_fields.get(i1).setText(_stringData.get(i1));
+					if (_stringData.get(i1).contains("ФАКТ") & this_small) {
+						_fields.get(i1).setText("Ф");
+					}
+					else {
+						_fields.get(i1).setText(_stringData.get(i1));
+					}	
 				}
 				
 				else {

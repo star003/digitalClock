@@ -22,8 +22,6 @@ import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-
-
 public class DashBoard extends Activity implements OnClickListener {
 	
 	ArrayList<TextView> _fields = new ArrayList<TextView>();
@@ -36,9 +34,9 @@ public class DashBoard extends Activity implements OnClickListener {
 	goCurrT mt2;
 	int sc 				= 0;
 	String this_marker 	= "DashBoard"; //** зададим имя маркера для логов
-	boolean this_small 	= true;
 	public static String dyn_brent_usd = ""; //**переключатель показа динамики нефть/доллар
 	
+	boolean this_small 	= true;
 	private static final String APP_PREFERENCES = "digitalClock";
     private SharedPreferences mSettings;
 	
