@@ -80,8 +80,9 @@ public final class R {
         public static final int raz_noch=0x7f020008;
         public static final int raz_vecher=0x7f020009;
         public static final int raz_ytro=0x7f02000a;
-        public static final int shape=0x7f02000b;
-        public static final int smallphone=0x7f02000c;
+        public static final int setting=0x7f02000b;
+        public static final int shape=0x7f02000c;
+        public static final int smallphone=0x7f02000d;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f09000e;
