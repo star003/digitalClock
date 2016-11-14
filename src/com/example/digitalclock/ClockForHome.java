@@ -2,6 +2,7 @@ package com.example.digitalclock;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -205,6 +206,9 @@ public class ClockForHome extends Activity {
 				
 				Log.e(this_marker,"ошибка gisFromSite.readMy() in class goData");
 				
+			} catch (ParseException e) {
+								
+				Log.e(this_marker,"ошибка gisFromSite.readMy() in class goData");
 			}
 			
 			try {

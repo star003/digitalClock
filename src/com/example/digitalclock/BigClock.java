@@ -1,6 +1,7 @@
 package com.example.digitalclock;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -133,7 +134,11 @@ public class BigClock extends Activity{
 		@Override
 	    protected Void doInBackground(Void... params) {
 	    	try {
-	    		_stringData.add(gisFromSite.readMy()[0]);
+	    		try {
+					_stringData.add(gisFromSite.readMy()[0]);
+				} catch (ParseException e) {
+					_stringData.add("");
+				}
 	    	} catch (IOException e) {
 	    		Log.i(this_marker,"error gisFromSite.readMy() in class goInd");
 			}

@@ -12,5 +12,11 @@
     <string name="title_activity_dyn_usd">DynUsd</string>
     <string name="title_activity_clock_for_home">ClockForHome</string>
     <string name="title_activity_splash">Splash</string>
+    
+    <string name="demo_null">-00.00</string>
+    <string name="demo_trend">N</string>
+    <string name="demo_object1">object1</string>
+    <string name="demo_object2">object2</string>
+    <string name="demo_object3">object3</string>
 
 </resources>

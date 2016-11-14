@@ -2,12 +2,19 @@ package com.example.digitalclock;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Attribute;
@@ -59,6 +66,7 @@ public class gisFromSite {
 	static List<String> cloudiness 		= Arrays.asList("€сно","малооблачно","облачно","пасмурно");
 	static List<String> precipitation  	= Arrays.asList("","","","","дождь","ливень","снег","снег","гроза","нет данных","без осадков");
 	static List<String> direction  		= Arrays.asList("—еверный","—еверо-¬осточный","¬осточный","ёго-¬осточный","ёжный","ёго-«ападный","«ападный","—еверо-«ападный");
+	static String this_marker 	= "DashBoard";
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//	описание:
@@ -200,13 +208,129 @@ public class gisFromSite {
 		return otvet;
 	}//static String getPrognozV2() throws IOException
 	
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//	описание:
-	//		данные с моего датчика
-	//	пример:
-	//		readMy()
-	static String[] readMy() throws IOException {
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/*
+	 * @idChanell	- ID канала например 180657
+	 * @numCh		- номер пол€ = номеру пол€ например дл€ field2 =  2
+	 * @fieldName	- им€ пол€ например field2
+	 * @numPok		- количество показаний (1440 по 1 минуте или 80 по 15 минут интервал = сутки)
+	 */
+	public static String[] readThingSpeak(String idChanell,String numCh,String fieldName,String numPok) throws IOException, ParseException{
+		
 		String itg = "";
+		String tek,mn,mx ;
+		Log.i(this_marker,"readMy()");		
+		
+		String url = "https://api.thingspeak.com/channels/"+idChanell+"/fields/"+numCh+".xml?results="+numPok;
+		Log.i(this_marker,"URL "+url);
+		List<Double> testList=new ArrayList<Double>();
+		
+		org.jsoup.nodes.Document doc  = Jsoup.connect(url).get();
+		
+		//**проверим врем€ последнего обновлени€ и вычислим разницу с текущим временем в секундах
+		Elements createdAt = doc.select("updated-at");
+		Date curDate = new Date();
+		Date date =new Date();
+		long rr =0; //**разница в секундах между последним показанием и текущим временем
+		
+		for (Element x:createdAt) {
+			
+			System.out.println(x.text());
+			DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
+			date = format.parse(x.text());
+			rr = (curDate.getTime() - (date.getTime()+10800000))/1000;			
+									
+		}
+		
+		if (rr>3600) { //**показаний нет больше часа. ¬ернем ошибку
+			
+			Log.i(this_marker,"cur date "+curDate);
+			Log.i(this_marker,"updated-at "+date);
+			
+			Log.i(this_marker,"rr "+rr);
+			
+			return "-;-;-;-;-;-;u".split(";");
+			
+		}
+		
+		//** просрочки показаний нет - едем дальше
+		
+		Elements metaElements = doc.select(fieldName);
+		
+		for (Element x:metaElements) {
+			
+			try{
+			
+				if (!x.text().equals("") & x.text()!=null & x.text().length()<15) {
+				
+					testList.add(Double.valueOf(x.text()));
+				
+				}
+				
+			} 
+			catch(NumberFormatException e){
+				
+			}
+						
+		}
+				
+		tek = testList.get(testList.size()-1).toString();
+		Log.i(this_marker,"tek "+tek);
+		//**расчет тренда изменени€
+		
+		int trendInterval = 10; //**по 10 точкам
+		List<Double>  tr = testList.subList(
+							testList.size()-(testList.size()<trendInterval ?testList.size(): trendInterval)
+								, testList.size()-1); //**список последних 10 показаний
+		
+		Double av  = 0.0; //**средн€€ температура по 10 показани€м
+		
+		for(int i = 0; i < tr.size(); i++) {
+			
+			av += tr.get(i); //**суммируем показани€
+			
+	    }
+				
+		av = av/tr.size(); //**вычислим среднюю температуру 
+		int trendK = 0;
+		
+		for(int i = 0; i < tr.size(); i++) {
+			
+			if (av - tr.get(i) < 0 ) { //**если меьше среней то на понижение
+				
+				trendK--;
+				
+			}
+			else {
+				
+				trendK++; //**на повышение
+				
+			}
+			
+	    }
+		
+		Collections.sort(testList);
+		mx = testList.get(testList.size()-1).toString();
+		mn = testList.get(0).toString();
+			
+		itg = tek+"; ;"+mn+"; ;"+mx+"; ;"+(trendK >0 ? "u" : "d");
+		
+		Log.i(this_marker,"mn "+mn);
+		Log.i(this_marker,"mx "+mx);
+		Log.i(this_marker,"itg.split "+itg);
+		
+		return itg.split(";");
+		
+	}//readThingSpeak
+	
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	static String[] readMyOld() throws UnsupportedEncodingException, IOException {
+		
+		String itg = "";
+		Log.i(this_marker,"readMy()");		
+		
 		URL url 				= new URL("http://star003.dlinkddns.com/03.php");
         URLConnection conn 		= url.openConnection();
         InputStreamReader rd 	= new InputStreamReader(conn.getInputStream(),"UTF-8");
@@ -231,6 +355,24 @@ public class gisFromSite {
 		}
 		
 		return x;
+		
+	}//readMyOld
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//	описание:
+	//		данные с моего датчика
+	//	пример:
+	//		readMy()
+	static String[] readMy() throws IOException, ParseException {
+	/*
+	 * 180657
+	 * 1
+	 * 80
+	 * field1	
+	 */
+		return readThingSpeak("180657","1","field1","80");
+		
+		
 	}//static String readMy() throws IOExceptio
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -455,7 +597,7 @@ public class gisFromSite {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ParseException {
 		System.out.println(readMy());
 	}//public static void main(String[] args) throws IOException
 
