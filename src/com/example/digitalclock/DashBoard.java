@@ -96,6 +96,13 @@ public class DashBoard extends Activity implements OnClickListener {
 											R.id.prg	,R.id.astr , 
 											R.id.curT1	,R.id.minT1		,R.id.trend1,R.id.maxT1,
 											R.id.curT2	,R.id.minT2		,R.id.trend2,R.id.maxT2);
+		/* 0	1	2	3
+		 * 4	5	6	7
+		 * 8	9	10	11
+		 * 12	13
+		 * 14	15	16	17
+		 * 18	19	20	21	
+		*/
 		
 		for (int i=0;i<fldId.size();i++){
 			
@@ -297,11 +304,17 @@ public class DashBoard extends Activity implements OnClickListener {
 		@Override
 	    protected Void doInBackground(Void... params) {
 			
-			List<Integer> ind = Arrays.asList(0,2,6,4);
+			//List<Integer> ind = Arrays.asList(0,2,6,4);
 			//**нужно предусмотреть сохранение прошлых показаний на случай , если не прочитает новые
+			
 			
 	    	try {
 	    		
+	    		addInd(gisFromSite.readMy() , _stringData);
+	    		addInd(gisFromSite.readThingSpeak("180093", "1", "field1", "1440") , _stringData1);
+	    		addInd(gisFromSite.readThingSpeak("180657", "2", "field2", "80") , _stringData2);
+	    		
+	    	/*	
 	    		//**мой датчик
 	    		String[] x = gisFromSite.readMy();
 	    		
@@ -415,6 +428,7 @@ public class DashBoard extends Activity implements OnClickListener {
 	    		}
 	    		
 	    	}
+	    	*/
 	    		
 	    	} catch (IOException e) {
 	    		
@@ -448,36 +462,10 @@ public class DashBoard extends Activity implements OnClickListener {
 	    	
 	    	//**прогноз погоды (не нужен , убрал)
 	    	_stringData.set(12,"<прогноз на неделю>");
-	    	/*
-	    	try {
-	    		ArrayList<String> h = gisFromSite.getPrognozV2();
-	    		if (h.size()>3) {
-	    			_stringData.set(12,String.valueOf(h.get(0)));
-	    		}	
-	    	}catch (IOException e) {
-	    		Log.e(this_marker,"error read gisFromSite.getPrognozV2() in class goInd");
-			}
-			*/
-	    	
+	    		    	
 	    	//**Долгота дня (не нужен , убрал)
 	    	_stringData.set(13,"");
-	    	/*
-	    	String[] ast;
-			try {
-				ast = gisFromSite.getAstronomy();
-				
-				if (ast.length>4) {
-					
-					_stringData.set(13,ast[0] +":"+ast[1]+" "
-						+ast[2] +":"+ast[3]+" "
-						+ast[4] +":"+ast[5]);
-					
-				}
-			} catch (IOException e) {
-				Log.e(this_marker,"error read gisFromSite.getAstronomy() in class goInd");
-			}
-			*/
-	    	
+	    		    	
 	    	//**геомагнитная обстановка
 	    	if (this_small!= true) {
 	    		try {
@@ -638,10 +626,16 @@ public class DashBoard extends Activity implements OnClickListener {
 		@Override
 		protected Void doInBackground(Void... params) {
 			
-			List<Integer> ind = Arrays.asList(0,2,6,4);
+			//List<Integer> ind = Arrays.asList(0,2,6,4);
 			
 	    	try {
 	    		//**мой датчик
+	    		
+	    		addInd(gisFromSite.readMy() , _stringData);
+	    		addInd(gisFromSite.readThingSpeak("180093", "1", "field1", "1440") , _stringData1);
+	    		addInd(gisFromSite.readThingSpeak("180657", "2", "field2", "80") , _stringData2);
+	    		
+	    	/*	
 	    		String[] x = gisFromSite.readMy();
 	    		
 	    		if (x.length>6) {
@@ -705,8 +699,6 @@ public class DashBoard extends Activity implements OnClickListener {
 		    			
 		    		}//if (x[4].equals("n") | x[4].equals("d") | x[4].equals("u"))
 	    			
-		    		
-	    			
 		    	}
 		    		
 	    		String[] x2 = gisFromSite.readThingSpeak("180657", "2", "field2", "80");
@@ -744,6 +736,7 @@ public class DashBoard extends Activity implements OnClickListener {
 	    			}//if (x[4].equals("n") | x[4].equals("d") | x[4].equals("u"))
     			
     		}//if (x.length>6)
+    		*/
 	    		
 	    	} catch (IOException e) {
 	    		
@@ -791,5 +784,47 @@ public class DashBoard extends Activity implements OnClickListener {
 	    }//protected void onPostExecute(Void result)
 		
 	}//class goCurrT extends AsyncTask<Void, Void, Void>
+	
+	/*
+	 * x - данные показателя
+	 * _stringData -что меняем. 
+	 */
+	
+	void addInd(String[] x , List<String> _stringData) {
+		
+		List<Integer> ind = Arrays.asList(0,2,6,4);
+			
+		if (x.length>6) {
+			
+			if (x[6].contains("u") | x[6].contains("d") | x[6].contains("u") ) {
+				//**все ок , заполним графы
+				Log.i(this_marker,"data in my weather...ок " + x[6]);
+				
+				for(int i=0;i<ind.size();i++){
+    				
+    				_stringData.set(i, x[ind.get(i)].indexOf(" ")>0 
+    						? x[ind.get(i)] : "".concat(x[ind.get(i)])) ;
+    				
+    				Log.i(this_marker,x[ind.get(i)].indexOf(" ")>0 
+    						? x[ind.get(i)] : "".concat(x[ind.get(i)]));
+    				
+    			}
+				
+			}
+			
+			else {
+				//**вернет старые данные
+				Log.e(this_marker,"data in my weather...fail " + x[6]);
+				
+				for (int i = 0 ;i<4;i++){
+					
+					_stringData.set(i, _fields.get(i).getText().toString()); 
+					
+				}
+				
+			}
+		}
+		
+	} //addInd
 	
 }//public class DashBoard extends Activity implements OnClickListener
