@@ -299,7 +299,7 @@
                         </TableRow>
                         
                         <TableRow
-                            android:id="@+id/tableRow1"
+                            android:id="@+id/widjRow1"
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent" >
 
@@ -370,7 +370,7 @@
                         </TableRow>
 
                         <TableRow
-                            android:id="@+id/tableRow2"
+                            android:id="@+id/widjRow2"
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent" >
 						<TextView
@@ -439,7 +439,7 @@
                         </TableRow>
 
                         <TableRow
-                            android:id="@+id/tableRow3"
+                            android:id="@+id/clockRow"
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent" >
 												<TextView

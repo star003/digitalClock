@@ -94,7 +94,8 @@ public class priceBRENT {
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	public static String investing ()   throws IOException {
+	public static String investing () {
+		
 		Document doc;
 		try {
 			doc = Jsoup.connect("http://www.investing.com/commodities/brent-oil")
@@ -103,13 +104,19 @@ public class priceBRENT {
 		
 			Elements metaElements = doc.select("span.arial_26.pid-8833-last");
 			for (Element x:metaElements) {
+				
 				return x.text();
+				
 			}
 		
 		} catch (IOException e) {
+			
 			return "";
+			
 		}
+		
 		return "";
+		
 	}//public static String investing () throws IOException
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -125,16 +132,23 @@ public class priceBRENT {
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	public static String usd() throws IOException {
+	public static String usd()  {
+		
 		try {
+			
 			Document doc  = Jsoup.connect("http://www.finam.ru")
 				.userAgent("Mozilla")
 				.get();
+			
 			Elements metaElements = doc.select("a.dark.no");
 			return metaElements.first().text();
+			
 		} catch (IOException e) {
+			
 			return "";
+			
 		}	
+		
 	}//public static String usd() throws IOException
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////

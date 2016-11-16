@@ -73,31 +73,36 @@ public final class R {
         public static final int bigphone=0x7f020001;
         public static final int border=0x7f020002;
         public static final int ic_launcher=0x7f020003;
-        public static final int my_shape=0x7f020004;
-        public static final int myscreen=0x7f020005;
-        public static final int myshape=0x7f020006;
-        public static final int nodata=0x7f020007;
-        public static final int pressure=0x7f020008;
-        public static final int ran_zagolovok=0x7f020009;
-        public static final int raz_day=0x7f02000a;
-        public static final int raz_noch=0x7f02000b;
-        public static final int raz_vecher=0x7f02000c;
-        public static final int raz_ytro=0x7f02000d;
-        public static final int setting=0x7f02000e;
-        public static final int shape=0x7f02000f;
-        public static final int smallphone=0x7f020010;
-        public static final int temperature=0x7f020011;
+        public static final int kirpich=0x7f020004;
+        public static final int my_shape=0x7f020005;
+        public static final int myscreen=0x7f020006;
+        public static final int myshape=0x7f020007;
+        public static final int nodata=0x7f020008;
+        public static final int pressure=0x7f020009;
+        public static final int ran_zagolovok=0x7f02000a;
+        public static final int raz_day=0x7f02000b;
+        public static final int raz_noch=0x7f02000c;
+        public static final int raz_vecher=0x7f02000d;
+        public static final int raz_ytro=0x7f02000e;
+        public static final int red_down=0x7f02000f;
+        public static final int setting=0x7f020010;
+        public static final int shape=0x7f020011;
+        public static final int smallphone=0x7f020012;
+        public static final int temperature=0x7f020013;
+        public static final int up=0x7f020014;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f09000e;
         public static final int LinearLayout2=0x7f090025;
         public static final int MediaController1=0x7f090000;
         public static final int TableLayout1=0x7f0900d3;
-        public static final int action_settings=0x7f090101;
+        public static final int action_settings=0x7f090108;
+        public static final int artTL=0x7f090104;
         public static final int astr=0x7f0900f8;
         public static final int bch1=0x7f0900ce;
         public static final int bday=0x7f09000b;
         public static final int bh1=0x7f090001;
+        public static final int big_clock_tl=0x7f090106;
         public static final int bmm1=0x7f090003;
         public static final int bmount=0x7f09000a;
         public static final int brent=0x7f0900cc;
@@ -106,10 +111,13 @@ public final class R {
         public static final int bss1=0x7f090005;
         public static final int btemp=0x7f09000d;
         public static final int byear=0x7f09000c;
+        public static final int clockRow=0x7f0900ee;
         public static final int curT=0x7f0900c8;
         public static final int curT1=0x7f0900f9;
         public static final int curT2=0x7f0900fd;
+        public static final int cur_date_tl=0x7f090103;
         public static final int day=0x7f0900d1;
+        public static final int free_zone=0x7f090107;
         public static final int gsCl1=0x7f090032;
         public static final int gsCl10=0x7f09003b;
         public static final int gsCl11=0x7f09003c;
@@ -325,10 +333,9 @@ public final class R {
         public static final int pr3=0x7f090023;
         public static final int pr4=0x7f090024;
         public static final int prg=0x7f0900f7;
-        public static final int tableRow1=0x7f0900dd;
+        public static final int r56_press_tl=0x7f090105;
+        public static final int r56tl=0x7f090101;
         public static final int tableRow10=0x7f0900d4;
-        public static final int tableRow2=0x7f0900e5;
-        public static final int tableRow3=0x7f0900ee;
         public static final int tableRow5=0x7f0900c0;
         public static final int tableRow6=0x7f09009c;
         public static final int textImageBig=0x7f09009b;
@@ -346,7 +353,10 @@ public final class R {
         public static final int usTime=0x7f09002b;
         public static final int usVal=0x7f09002a;
         public static final int usd=0x7f0900cd;
+        public static final int usd_brent_tl=0x7f090102;
         public static final int weekDay=0x7f0900d0;
+        public static final int widjRow1=0x7f0900dd;
+        public static final int widjRow2=0x7f0900e5;
     }
     public static final class layout {
         public static final int activity_big_clock=0x7f030000;
@@ -364,6 +374,7 @@ public final class R {
         public static final int myscreen=0x7f03000c;
         public static final int new_small_myscreen=0x7f03000d;
         public static final int small_myscreen=0x7f03000e;
+        public static final int table_new_small_myscreen=0x7f03000f;
     }
     public static final class menu {
         public static final int big_clock=0x7f080000;
@@ -390,6 +401,10 @@ public final class R {
         public static final int title_activity_from_gis=0x7f060007;
         public static final int title_activity_splash=0x7f06000a;
         public static final int wait=0x7f060003;
+        public static final int zerro_BRENT=0x7f060013;
+        public static final int zerro_DUN=0x7f060011;
+        public static final int zerro_USD=0x7f060012;
+        public static final int zerro_plas_minus=0x7f060010;
     }
     public static final class style {
         /** 

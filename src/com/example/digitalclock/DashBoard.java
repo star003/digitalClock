@@ -1,7 +1,5 @@
 package com.example.digitalclock;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -40,24 +38,11 @@ public class DashBoard extends Activity implements OnClickListener {
 	boolean this_small 	= true;
 	private static final String APP_PREFERENCES = "digitalClock";
     private SharedPreferences mSettings;
+    
+    
 	
 	/////////////////////////////////////////////////////////////////////////////////////
-	/*
-	_fields.add((TextView)findViewById(R.id.curT));//0
-	_fields.add((TextView)findViewById(R.id.minT));//1
-	_fields.add((TextView)findViewById(R.id.trend));//2
-	_fields.add((TextView)findViewById(R.id.maxT));//3
-	_fields.add((TextView)findViewById(R.id.brent));//4
-	_fields.add((TextView)findViewById(R.id.usd));//5
-	_fields.add((TextView)findViewById(R.id.h1));//6
-	_fields.add((TextView)findViewById(R.id.rr1));//7
-	_fields.add((TextView)findViewById(R.id.m1));//8
-	_fields.add((TextView)findViewById(R.id.weekDay));//9
-	_fields.add((TextView)findViewById(R.id.day));//10
-	_fields.add((TextView)findViewById(R.id.mont));//11
-	_fields.add((TextView)findViewById(R.id.prg));//12
-	_fields.add((TextView)findViewById(R.id.astr));//13
-	*/
+	
 	@SuppressLint("ResourceAsColor")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +89,21 @@ public class DashBoard extends Activity implements OnClickListener {
 		 * 18	19	20	21	
 		*/
 		
+		/*
+		ArrayList<ImageView> _fieldsI 	= new ArrayList<ImageView>();
+		List<Integer> fldIdGr = Arrays.asList(R.id.tImage1,R.id.timage2,R.id.timage3);
+		
+		for (int i=0;i<fldIdGr.size();i++){
+			
+			ImageView fff = (ImageView)findViewById(fldIdGr.get(i));
+			_fieldsI.add(fff);
+			
+		}
+		
+		//_fieldsI.get(0).setImageResource(R.drawable.kirpich);
+		 * 
+		 */
+				
 		for (int i=0;i<fldId.size();i++){
 			
 			TextView fff = (TextView)findViewById(fldId.get(i));
@@ -129,6 +129,8 @@ public class DashBoard extends Activity implements OnClickListener {
 			} 
 			
 		}
+		
+		
 		
 		mt = new goInd();
        	mt.execute();
@@ -190,7 +192,7 @@ public class DashBoard extends Activity implements OnClickListener {
 		
 		String[] xx = gisFromSite.getCurrData();
 		
-		_fields.get(9).setText(xx[7]);
+		_fields.get(9).setText(xx[8]);
 		_fields.get(10).setText(xx[2]);
 		_fields.get(11).setText(xx[6]);
 		
@@ -306,197 +308,16 @@ public class DashBoard extends Activity implements OnClickListener {
 			
 			//List<Integer> ind = Arrays.asList(0,2,6,4);
 			//**нужно предусмотреть сохранение прошлых показаний на случай , если не прочитает новые
-			
-			
-	    	try {
-	    		
-	    		addInd(gisFromSite.readMy() , _stringData);
-	    		addInd(gisFromSite.readThingSpeak("180093", "1", "field1", "1440") , _stringData1);
-	    		addInd(gisFromSite.readThingSpeak("180657", "2", "field2", "80") , _stringData2);
-	    		
-	    	/*	
-	    		//**мой датчик
-	    		String[] x = gisFromSite.readMy();
-	    		
-	    		if (x.length>6) {
-	    			
-	    			if (x[6].contains("u") | x[6].contains("d") | x[6].contains("u") ) {
-	    				//**все ок , заполним графы
-	    				Log.i(this_marker,"data in my weather...ок " + x[6]);
-	    				
-	    				for(int i=0;i<ind.size();i++){
-		    				
-		    				_stringData.set(i, x[ind.get(i)].indexOf(" ")>0 
-		    						? x[ind.get(i)] : "".concat(x[ind.get(i)])) ;
-		    				
-		    				Log.i(this_marker,x[ind.get(i)].indexOf(" ")>0 
-		    						? x[ind.get(i)] : "".concat(x[ind.get(i)]));
-		    				
-		    			}
-	    				
-	    			}
-	    			
-	    			else {
-	    				//**вернет старые данные
-	    				Log.e(this_marker,"data in my weather...fail " + x[6]);
-	    				
-	    				for (int i = 0 ;i<4;i++){
-	    					
-	    					_stringData.set(i, _fields.get(i).getText().toString()); 
-	    					
-	    				}
-	    				
-	    			}//if (x[4].equals("n") | x[4].equals("d") | x[4].equals("u"))
-	    			
-	    			
-	    			String[] x1 = gisFromSite.readThingSpeak("180093", "1", "field1", "1440");
-	    			Log.i(this_marker,"data in readThingSpeak art " + x1[6]);
-	    			
-		    		if (x1.length>6) {
-		    			
-		    			if (x1[6].contains("u") | x1[6].contains("d") | x1[6].contains("u") ) {
-		    				//**все ок , заполним графы
-		    				Log.i(this_marker,"data in my weather...ок " + x1[6]);
-		    				
-		    				for(int i=0;i<ind.size();i++){
-			    				
-			    				_stringData1.set(i, x1[ind.get(i)].indexOf(" ")>0 
-			    						? x1[ind.get(i)] : "".concat(x1[ind.get(i)])) ;
-			    				
-			    				Log.i(this_marker,x1[ind.get(i)].indexOf(" ")>0 
-			    						? x1[ind.get(i)] : "".concat(x1[ind.get(i)]));
-			    				
-			    			}
-		    				
-		    			}
-		    			
-		    			else {
-		    				
-		    				//**вернет старые данные
-		    				Log.e(this_marker,"data in my weather...fail " + x[6]);
-		    				
-		    				for (int i = 0 ;i<4;i++){
-		    					
-		    					_stringData1.set(i, _fields.get(i).getText().toString()); 
-		    					
-		    				}
-		    				
-		    			}//if (x[4].equals("n") | x[4].equals("d") | x[4].equals("u"))
-	    			
-	    		}//if (x.length>6)
-		    		
-		    		String[] x2 = gisFromSite.readThingSpeak("180657", "2", "field2", "80");
-	    			Log.i(this_marker,"data in readThingSpeak art " + x2[6]);
-	    			
-		    		if (x2.length>6) {
-		    			
-		    			if (x2[6].contains("u") | x2[6].contains("d") | x2[6].contains("u") ) {
-		    				//**все ок , заполним графы
-		    				Log.i(this_marker,"data in my weather...ок " + x2[6]);
-		    				
-		    				for(int i=0;i<ind.size();i++){
-			    				
-			    				_stringData2.set(i, x2[ind.get(i)].indexOf(" ")>0 
-			    						? x2[ind.get(i)] : "".concat(x2[ind.get(i)])) ;
-			    				
-			    				Log.i(this_marker,x2[ind.get(i)].indexOf(" ")>0 
-			    						? x2[ind.get(i)] : "".concat(x2[ind.get(i)]));
-			    				
-			    			}
-		    				
-		    			}
-		    			
-		    			else {
-		    				
-		    				//**вернет старые данные
-		    				Log.e(this_marker,"data in my weather...fail " + x[6]);
-		    				
-		    				for (int i = 0 ;i<4;i++){
-		    					
-		    					_stringData2.set(i, _fields.get(i).getText().toString()); 
-		    					
-		    				}
-		    				
-		    			}//if (x[4].equals("n") | x[4].equals("d") | x[4].equals("u"))
-	    			
-	    		}//if (x.length>6)
-		    		
-	    		else {
-	    			
-	    			Log.e(this_marker,"error _stringData in class goInd less 7 ");
-	    			
-	    		}
-	    		
-	    	}
-	    	*/
-	    		
-	    	} catch (IOException e) {
-	    		
-	    		Log.e(this_marker,"error read gisFromSite.readMy() in class goInd");
-	    		
-			} catch (ParseException e) {
-				
-				Log.e(this_marker,"error read gisFromSite.readMy() in class goInd");
-				
-			}
 	    	
-	    	try {
+			addInd(gisFromSite.readThingSpeak("180657","1","field1","96",5) , _stringData);
+	    	addInd(gisFromSite.readThingSpeak("180093", "1", "field1", "1440",10) , _stringData1);
+	    	addInd(gisFromSite.readThingSpeak("180657", "2", "field2", "96",5) , _stringData2);
 	    		
-				_stringData.set(4,"Brent: ".concat(priceBRENT.investing()));
-				
-			} catch (IOException e1) {
-				
-				Log.e(this_marker,"error priceBRENT.investing() in class goInd");
-				
-			}
-	    	
-	    	try {
-	    		
-	    		_stringData.set(5, "USD: ".concat(priceBRENT.usd()));
-	    		
-			} catch (IOException e) {
-				
-				Log.e(this_marker,"error read priceBRENT.usd() in class goInd");
-				
-			}
-	    	
-	    	//**прогноз погоды (не нужен , убрал)
-	    	_stringData.set(12,"<прогноз на неделю>");
-	    		    	
-	    	//**Долгота дня (не нужен , убрал)
-	    	_stringData.set(13,"");
-	    		    	
-	    	//**геомагнитная обстановка
-	    	if (this_small!= true) {
-	    		try {
-	    			
-	    			ArrayList<String> x= gisFromSite.getMagnetic();
-	    			
-	    			if (x.size()>23) { 
-	    				
-	    				for(int img = 0;img < x.size();img++) {
-	    					
-	    					_stringDataMG.set(img, x.get(img));
-	    					
-	    				}
-	    				
-	    				Log.i(this_marker,"data magnetic ... ok");
-	    				
-	    			}	
-	    			else {
-	    				
-	    				Log.e(this_marker,"error read gisFromSite.getMagnetic()  x.size()<23 in task goInd");
-	    				
-	    			}
-				
-	    		} catch (IOException e) {
-	    			
-	    			Log.e(this_marker,"error read gisFromSite.getMagnetic() in class goInd");
-	    			
-	    		}
-	    	}	
+			_stringData.set(4,"Brent: ".concat(priceBRENT.investing()));
+	    	_stringData.set(5, "USD: ".concat(priceBRENT.usd()));
 	    	
 	    	return null;
+	    	
 	    }//protected Void doInBackground(Void... params)
 
 		/////////////////////////////////////////////////////////////////////////////////////
@@ -521,9 +342,7 @@ public class DashBoard extends Activity implements OnClickListener {
 	    		 _fields.get(ind.get(i)+14).setText(_stringData1.get(ind.get(i)));
 	    		 _fields.get(ind.get(i)+18).setText(_stringData2.get(ind.get(i)));
 	    		 
-	    		 
 	    	 }
-	    	 
 	      
 	    	 if (this_small!= true) {
 	    		 
@@ -563,25 +382,11 @@ public class DashBoard extends Activity implements OnClickListener {
 		
 		@Override
 		protected Void doInBackground(Void... params) {
-			try {
 				
-				_stringData.set(4,  priceBRENT.investing());
-				
-			} catch (IOException e1) {
-				
-				Log.e(this_marker,"error read priceBRENT.investing() in  class goUsd");
-				
-			}
-	    	try {
-	    		
-	    		_stringData.set(5, priceBRENT.usd());
-	    		
-			} catch (IOException e) {
-				
-				Log.e(this_marker,"error read priceBRENT.usd() in  class goUsd");
-				
-			}
+			_stringData.set(4,  priceBRENT.investing());
+	    	_stringData.set(5, priceBRENT.usd());
 		    return null;
+		    
 	    }//protected Void doInBackground(Void... params)
 		
 		/////////////////////////////////////////////////////////////////////////////////////
@@ -626,128 +431,9 @@ public class DashBoard extends Activity implements OnClickListener {
 		@Override
 		protected Void doInBackground(Void... params) {
 			
-			//List<Integer> ind = Arrays.asList(0,2,6,4);
-			
-	    	try {
-	    		//**мой датчик
-	    		
-	    		addInd(gisFromSite.readMy() , _stringData);
-	    		addInd(gisFromSite.readThingSpeak("180093", "1", "field1", "1440") , _stringData1);
-	    		addInd(gisFromSite.readThingSpeak("180657", "2", "field2", "80") , _stringData2);
-	    		
-	    	/*	
-	    		String[] x = gisFromSite.readMy();
-	    		
-	    		if (x.length>6) {
-	    			
-	    			Log.i(this_marker," data x[6] : "+x[6]+" ok ");
-	    			
-	    			if (x[6].contains("n") | x[6].contains("d") | x[6].contains("u") ) {
-	    				
-	    				for(int i=0;i<ind.size();i++){
-	    				
-	    					_stringData.set(i, x[ind.get(i)].indexOf(" ")>0 
-	    						? x[ind.get(i)] : "".concat(x[ind.get(i)])) ;
-	    					
-	    					Log.i(this_marker,x[ind.get(i)].indexOf(" ")>0 
-	    						? x[ind.get(i)] : "".concat(x[ind.get(i)]));
-	    				}
-	    				
-	    			}
-	    			else {
-	    				//**вернет старые данные
-	    				Log.i(this_marker,"data in my weather...fail " + x[6]);
-	    				
-	    				for (int i = 0 ;i<4;i++){
-	    					
-	    					_stringData.set(i, _fields.get(i).getText().toString()); 
-	    					
-	    				}
-	    				
-	    			}//if (x[4].equals("n") | x[4].equals("d") | x[4].equals("u"))
-	    			
-	    			
-	    			String[] x1 = gisFromSite.readThingSpeak("180093", "1", "field1", "1440");
-		    		
-		    		if (x1.length>6) {
-		    			
-		    			Log.i(this_marker," data x[6] : "+x1[6]+" ok ");
-		    			
-		    			if (x1[6].contains("n") | x1[6].contains("d") | x1[6].contains("u") ) {
-		    				
-		    				for(int i=0;i<ind.size();i++){
-		    				
-		    					_stringData1.set(i, x1[ind.get(i)].indexOf(" ")>0 
-		    						? x[ind.get(i)] : "".concat(x1[ind.get(i)])) ;
-		    					
-		    					Log.i(this_marker,x1[ind.get(i)].indexOf(" ")>0 
-		    						? x1[ind.get(i)] : "".concat(x1[ind.get(i)]));
-		    				}//for
-		    				
-		    			}//if
-		    			
-		    			else {
-		    				//**вернет старые данные
-		    				Log.i(this_marker,"data in my weather...fail " + x[6]);
-		    				
-		    				for (int i = 0 ;i<4;i++){
-		    					
-		    					_stringData1.set(i, _fields.get(i).getText().toString()); 
-		    					
-		    				}//for
-		    			}
-		    			
-		    		}//if (x[4].equals("n") | x[4].equals("d") | x[4].equals("u"))
-	    			
-		    	}
-		    		
-	    		String[] x2 = gisFromSite.readThingSpeak("180657", "2", "field2", "80");
-    			Log.i(this_marker,"data in readThingSpeak art " + x2[6]);
-    			
-	    		if (x2.length>6) {
-	    			
-	    			if (x2[6].contains("u") | x2[6].contains("d") | x2[6].contains("u") ) {
-	    				//**все ок , заполним графы
-	    				Log.i(this_marker,"data in my weather...ок " + x2[6]);
-	    				
-	    				for(int i=0;i<ind.size();i++){
-		    				
-		    				_stringData2.set(i, x2[ind.get(i)].indexOf(" ")>0 
-		    						? x2[ind.get(i)] : "".concat(x2[ind.get(i)])) ;
-		    				
-		    				Log.i(this_marker,x2[ind.get(i)].indexOf(" ")>0 
-		    						? x2[ind.get(i)] : "".concat(x2[ind.get(i)]));
-		    				
-		    			}
-	    				
-	    			}
-	    			
-	    			else {
-	    				
-	    				//**вернет старые данные
-	    				Log.e(this_marker,"data in my weather...fail " + x[6]);
-	    				
-	    				for (int i = 0 ;i<4;i++){
-	    					
-	    					_stringData2.set(i, _fields.get(i).getText().toString()); 
-	    					
-	    				}
-	    				
-	    			}//if (x[4].equals("n") | x[4].equals("d") | x[4].equals("u"))
-    			
-    		}//if (x.length>6)
-    		*/
-	    		
-	    	} catch (IOException e) {
-	    		
-	    		Log.e(this_marker,"error read gisFromSite.readMy() in  class goCurrT");
-	    		
-			} catch (ParseException e) {
-				
-				Log.e(this_marker,"error read gisFromSite.readMy() in  class goCurrT");
-				
-			}
-			
+	    	addInd(gisFromSite.readThingSpeak("180657",	"1",	"field1",	"96"	,5) , _stringData);
+	    	addInd(gisFromSite.readThingSpeak("180093", "1", 	"field1", 	"1440"	,10), _stringData1);
+	    	addInd(gisFromSite.readThingSpeak("180657", "2", 	"field2", 	"96"	,5) , _stringData2);
 		    return null;
 		    
 	    }//protected Void doInBackground(Void... params)
@@ -764,10 +450,10 @@ public class DashBoard extends Activity implements OnClickListener {
 	    		List<Integer> ind = Arrays.asList(0,1,2,3);
 	    		
 	    		for(int i=0 ;i<ind.size();i++) {
-	    			
+	    			//!!
 	    			_fields.get(ind.get(i)).setText(_stringData.get(ind.get(i)));
-	    			_fields.get(ind.get(i)+12).setText(_stringData1.get(ind.get(i)));
-	    			_fields.get(ind.get(i)+16).setText(_stringData2.get(ind.get(i)));
+	    			_fields.get(ind.get(i)+14).setText(_stringData1.get(ind.get(i)));
+	    			_fields.get(ind.get(i)+18).setText(_stringData2.get(ind.get(i)));
 	    			
 	    			Log.i(this_marker,"_fields.get(ind.get(i+14)).setText(_stringData.get(ind.get(i)))"+_stringData.get(ind.get(i)));
 	    			
@@ -796,7 +482,7 @@ public class DashBoard extends Activity implements OnClickListener {
 			
 		if (x.length>6) {
 			
-			if (x[6].contains("u") | x[6].contains("d") | x[6].contains("u") ) {
+			if (x[6].contains("u") | x[6].contains("d") | x[6].contains("n") ) {
 				//**все ок , заполним графы
 				Log.i(this_marker,"data in my weather...ок " + x[6]);
 				

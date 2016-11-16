@@ -18,5 +18,10 @@
     <string name="demo_object1">object1</string>
     <string name="demo_object2">object2</string>
     <string name="demo_object3">object3</string>
+    <string name="zerro_plas_minus">+-0</string>
+    <string name="zerro_DUN">D U N</string>
+    <string name="zerro_USD">USD 00.00</string>
+    <string name="zerro_BRENT">BRENT 00.00</string>
+    
 
 </resources>

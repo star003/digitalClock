@@ -214,8 +214,9 @@ public class gisFromSite {
 	 * @numCh		- номер поля = номеру поля например для field2 =  2
 	 * @fieldName	- имя поля например field2
 	 * @numPok		- количество показаний (1440 по 1 минуте или 80 по 15 минут интервал = сутки)
+	 * @numForTrend - строим тренд по данному количеству последних показаний
 	 */
-	public static String[] readThingSpeak(String idChanell,String numCh,String fieldName,String numPok) throws IOException, ParseException{
+	public static String[] readThingSpeak(String idChanell,String numCh,String fieldName,String numPok,int numForTrend) {
 		
 		String itg = "";
 		String tek,mn,mx ;
@@ -225,7 +226,19 @@ public class gisFromSite {
 		Log.i(this_marker,"URL "+url);
 		List<Double> testList=new ArrayList<Double>();
 		
-		org.jsoup.nodes.Document doc  = Jsoup.connect(url).get();
+		org.jsoup.nodes.Document doc;
+		try {
+			
+			doc = Jsoup.connect(url).get();
+			
+			
+			
+		} catch (IOException e1) {
+			
+			Log.e(this_marker,"ошибка подключениея к api.thingspeak.com , возможно нет связи ? ");
+			return "-;-;-;-;-;-;u".split(";");
+			
+		}
 		
 		//**проверим время последнего обновления и вычислим разницу с текущим временем в секундах
 		Elements createdAt = doc.select("updated-at");
@@ -237,7 +250,17 @@ public class gisFromSite {
 			
 			System.out.println(x.text());
 			DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
-			date = format.parse(x.text());
+			try {
+				
+				date = format.parse(x.text());
+				
+			} catch (ParseException e) {
+				
+				Log.e(this_marker,"ошбка получения даты посл. показаний с thingspeak.com , возможно нет связи ? ");
+				return "-;-;-;-;-;-;u".split(";");
+				
+			}
+			
 			rr = (curDate.getTime() - (date.getTime()+10800000))/1000;			
 									
 		}
@@ -270,6 +293,8 @@ public class gisFromSite {
 			} 
 			catch(NumberFormatException e){
 				
+				Log.e(this_marker,"ошибка получения данных с thingspeak.com значение: "+x.text()+ " не преобразовано к числу");
+				
 			}
 						
 		}
@@ -278,7 +303,7 @@ public class gisFromSite {
 		Log.i(this_marker,"tek "+tek);
 		//**расчет тренда изменения
 		
-		int trendInterval = 10; //**по 10 точкам
+		int trendInterval = numForTrend; //**по 10 точкам
 		List<Double>  tr = testList.subList(
 							testList.size()-(testList.size()<trendInterval ?testList.size(): trendInterval)
 								, testList.size()-1); //**список последних 10 показаний
@@ -312,8 +337,24 @@ public class gisFromSite {
 		Collections.sort(testList);
 		mx = testList.get(testList.size()-1).toString();
 		mn = testList.get(0).toString();
+		
+		if (trendK >0) {
+		
+			itg = tek+"; ;"+mn+"; ;"+mx+"; ;u";
 			
-		itg = tek+"; ;"+mn+"; ;"+mx+"; ;"+(trendK >0 ? "u" : "d");
+		}	
+		
+		else if (trendK <0) {
+				
+				itg = tek+"; ;"+mn+"; ;"+mx+"; ;d";	
+			
+		}	
+		
+		else {
+			
+			itg = tek+"; ;"+mn+"; ;"+mx+"; ;n";
+			
+		}
 		
 		Log.i(this_marker,"mn "+mn);
 		Log.i(this_marker,"mx "+mx);
@@ -370,7 +411,7 @@ public class gisFromSite {
 	 * 80
 	 * field1	
 	 */
-		return readThingSpeak("180657","1","field1","80");
+		return readThingSpeak("180657","1","field1","80",5);
 		
 		
 	}//static String readMy() throws IOExceptio
