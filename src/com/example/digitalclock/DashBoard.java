@@ -79,14 +79,16 @@ public class DashBoard extends Activity implements OnClickListener {
 											R.id.brent	,R.id.usd		,R.id.bch1	,R.id.brr1,
 											R.id.m1		,R.id.weekDay	,R.id.day	,R.id.mont,
 											R.id.prg	,R.id.astr , 
-											R.id.curT1	,R.id.minT1		,R.id.trend1,R.id.maxT1,
-											R.id.curT2	,R.id.minT2		,R.id.trend2,R.id.maxT2);
+											R.id.curT1	,R.id.minT1		,R.id.trend1,R.id.maxT1
+											,R.id.curT3	,R.id.minT3		,R.id.trend3,R.id.maxT3
+											,R.id.curT2	,R.id.minT2		,R.id.trend2,R.id.maxT2);
 		/* 0	1	2	3
 		 * 4	5	6	7
 		 * 8	9	10	11
 		 * 12	13
 		 * 14	15	16	17
 		 * 18	19	20	21	
+		 * 22	23	24	25
 		*/
 		
 		/*
@@ -151,7 +153,7 @@ public class DashBoard extends Activity implements OnClickListener {
         						sc ++;
         						refreshTime();
         	      	      
-        						if (sc>5) {
+        						if (sc>2) {
         							
         							//**раз в 5 минут обновим показания
         							sc = 0;
@@ -288,6 +290,7 @@ public class DashBoard extends Activity implements OnClickListener {
 		List<String> _stringData 	= Arrays.asList("","","","","","","","","","","","","","");
 		List<String> _stringData1 	= Arrays.asList("","","","","","","","","","","","","","");
 		List<String> _stringData2 	= Arrays.asList("","","","","","","","","","","","","","");
+		List<String> _stringData3 	= Arrays.asList("","","","","","","","","","","","","","");
 		List<String> _stringDataMG 	= Arrays.asList("","","","","","","","",
 													"","","","","","","","",
 													"","","","","","","","");
@@ -309,9 +312,11 @@ public class DashBoard extends Activity implements OnClickListener {
 			//List<Integer> ind = Arrays.asList(0,2,6,4);
 			//**нужно предусмотреть сохранение прошлых показаний на случай , если не прочитает новые
 	    	
-			addInd(gisFromSite.readThingSpeak("180657","1","field1","96",5) , _stringData);
-	    	addInd(gisFromSite.readThingSpeak("180093", "1", "field1", "1440",10) , _stringData1);
-	    	addInd(gisFromSite.readThingSpeak("180657", "2", "field2", "96",5) , _stringData2);
+			addInd(gisFromSite.readThingSpeak("180657","1","field1"		,	"96"	,5) , _stringData);
+	    	addInd(gisFromSite.readThingSpeak("200376", "1", "field1"	, 	"1440"	,10) , _stringData1);
+	    	addInd(gisFromSite.readThingSpeak("180657", "2", "field2"	, 	"96"	,5) , _stringData2);
+	    	addInd(gisFromSite.readThingSpeak("200376", "2", "field2"	, 	"96"	,5) , _stringData3);
+	    	//addInd(gisFromSite.readThingSpeakTest() , _stringData3);
 	    		
 			_stringData.set(4,"Brent: ".concat(priceBRENT.investing()));
 	    	_stringData.set(5, "USD: ".concat(priceBRENT.usd()));
@@ -341,6 +346,7 @@ public class DashBoard extends Activity implements OnClickListener {
 	    		 
 	    		 _fields.get(ind.get(i)+14).setText(_stringData1.get(ind.get(i)));
 	    		 _fields.get(ind.get(i)+18).setText(_stringData2.get(ind.get(i)));
+	    		 _fields.get(ind.get(i)+22).setText(_stringData3.get(ind.get(i)));
 	    		 
 	    	 }
 	      
@@ -417,6 +423,7 @@ public class DashBoard extends Activity implements OnClickListener {
 		List<String> _stringData = Arrays.asList("","","","","","","","","","","","","","");
 		List<String> _stringData1 = Arrays.asList("","","","","","","","","","","","","","");
 		List<String> _stringData2 = Arrays.asList("","","","","","","","","","","","","","");
+		List<String> _stringData3 = Arrays.asList("","","","","","","","","","","","","","");
 		/////////////////////////////////////////////////////////////////////////////////////		
 		
 		@Override
@@ -434,6 +441,8 @@ public class DashBoard extends Activity implements OnClickListener {
 	    	addInd(gisFromSite.readThingSpeak("180657",	"1",	"field1",	"96"	,5) , _stringData);
 	    	addInd(gisFromSite.readThingSpeak("180093", "1", 	"field1", 	"1440"	,10), _stringData1);
 	    	addInd(gisFromSite.readThingSpeak("180657", "2", 	"field2", 	"96"	,5) , _stringData2);
+	    	addInd(gisFromSite.readThingSpeak("200376", "2", 	"field2", 	"96"	,5) , _stringData3);
+	    	//addInd(gisFromSite.readThingSpeakTest() , _stringData3);
 		    return null;
 		    
 	    }//protected Void doInBackground(Void... params)
@@ -454,6 +463,7 @@ public class DashBoard extends Activity implements OnClickListener {
 	    			_fields.get(ind.get(i)).setText(_stringData.get(ind.get(i)));
 	    			_fields.get(ind.get(i)+14).setText(_stringData1.get(ind.get(i)));
 	    			_fields.get(ind.get(i)+18).setText(_stringData2.get(ind.get(i)));
+	    			_fields.get(ind.get(i)+22).setText(_stringData3.get(ind.get(i)));
 	    			
 	    			Log.i(this_marker,"_fields.get(ind.get(i+14)).setText(_stringData.get(ind.get(i)))"+_stringData.get(ind.get(i)));
 	    			

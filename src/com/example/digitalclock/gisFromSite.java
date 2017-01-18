@@ -28,6 +28,16 @@ import android.util.Log;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 public class gisFromSite {
+	
+	public static double round(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
+
+	    long factor = (long) Math.pow(10, places);
+	    value = value * factor;
+	    long tmp = Math.round(value);
+	    return (double) tmp / factor;
+	}
+	
 	/*
 	TOWN       информация о пункте прогнозирования:
 	Index      уникальный пятизначный код города
@@ -209,6 +219,16 @@ public class gisFromSite {
 	}//static String getPrognozV2() throws IOException
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	public static String[] readThingSpeakTest() {
+		//**тестовая процедура - заглушка
+	
+		return "0;1;2;3;4;5;u".split(";");
+		
+	}	//readThingSpeakTest
+	
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/*
 	 * @idChanell	- ID канала например 180657
 	 * @numCh		- номер поля = номеру поля например для field2 =  2
@@ -286,7 +306,7 @@ public class gisFromSite {
 			
 				if (!x.text().equals("") & x.text()!=null & x.text().length()<15) {
 				
-					testList.add(Double.valueOf(x.text()));
+					testList.add(round(Double.valueOf(x.text()),1));
 				
 				}
 				

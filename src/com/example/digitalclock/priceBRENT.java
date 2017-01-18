@@ -149,6 +149,10 @@ public class priceBRENT {
 			
 		}	
 		
+		catch (NullPointerException e1){
+			return "";
+		}
+		
 	}//public static String usd() throws IOException
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
