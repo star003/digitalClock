@@ -313,7 +313,7 @@ public class DashBoard extends Activity implements OnClickListener {
 			//**нужно предусмотреть сохранение прошлых показаний на случай , если не прочитает новые
 	    	
 			addInd(gisFromSite.readThingSpeak("180657","1","field1"		,	"96"	,5) , _stringData);
-	    	addInd(gisFromSite.readThingSpeak("200376", "1", "field1"	, 	"1440"	,10) , _stringData1);
+	    	addInd(gisFromSite.readThingSpeak("200376", "1", "field1"	, 	"96"	,10) , _stringData1);
 	    	addInd(gisFromSite.readThingSpeak("180657", "2", "field2"	, 	"96"	,5) , _stringData2);
 	    	addInd(gisFromSite.readThingSpeak("200376", "2", "field2"	, 	"96"	,5) , _stringData3);
 	    	//addInd(gisFromSite.readThingSpeakTest() , _stringData3);
