@@ -24,7 +24,7 @@ import android.widget.TextView;
 public class DashBoard extends Activity implements OnClickListener {
 	
 	ArrayList<TextView> _fields = new ArrayList<TextView>();
-	ArrayList<TextView> _fieldsMg = new ArrayList<TextView>();
+	//ArrayList<TextView> _fieldsMg = new ArrayList<TextView>();
 	
 	List<Integer> _color = Arrays.asList(R.color.gm1,R.color.gm2,R.color.gm3,R.color.gm4,
 			R.color.gm5,R.color.gm6,R.color.gm7,R.color.gm8);
@@ -63,7 +63,8 @@ public class DashBoard extends Activity implements OnClickListener {
 		}
 		else {
 			
-			setContentView(R.layout.myscreen);
+			//setContentView(R.layout.myscreen);
+			setContentView(R.layout.new_small_myscreen);
 			
 		}
 		
@@ -74,6 +75,7 @@ public class DashBoard extends Activity implements OnClickListener {
 		Typeface face=Typeface.createFromAsset(getAssets(), "Electron.ttf");
 		
 		Log.i(this_marker,"----welcome dashboard----");
+		Log.i(this_marker,"this small "+this_small);
 		
 		List<Integer> fldId = Arrays.asList(R.id.curT	,R.id.minT		,R.id.trend	,R.id.maxT,
 											R.id.brent	,R.id.usd		,R.id.bch1	,R.id.brr1,
@@ -105,34 +107,46 @@ public class DashBoard extends Activity implements OnClickListener {
 		//_fieldsI.get(0).setImageResource(R.drawable.kirpich);
 		 * 
 		 */
-				
+		
+		Log.i(this_marker,"init elements");
+		
+		Log.i(this_marker,"fldId.size() "+fldId.size());
+		
 		for (int i=0;i<fldId.size();i++){
 			
 			TextView fff = (TextView)findViewById(fldId.get(i));
+			Log.i(this_marker,"step 1 "+i);
 			fff.setTypeface(face);
 			_fields.add(fff);
 			
 		}
 		
-		if (this_small!= true) { 
-			
+		Log.i(this_marker,"set name elements");
+		
+		//if (this_small!= true) { 
+			/*
 			List<Integer> fldMg = Arrays.asList(R.id.mg11,R.id.mg12,R.id.mg13,R.id.mg14,R.id.mg15,R.id.mg16,R.id.mg17,R.id.mg18,
 											R.id.mg21,R.id.mg22,R.id.mg23,R.id.mg24,R.id.mg25,R.id.mg26,R.id.mg27,R.id.mg28,
 											R.id.mg31,R.id.mg32,R.id.mg33,R.id.mg34,R.id.mg35,R.id.mg36,R.id.mg37,R.id.mg38);
-		
+			
+			Log.i(this_marker,"fldMg.size() "+fldMg.size());
+			
 			for (int i = 0; i < fldMg.size(); i++) {
 				
+				Log.i(this_marker,"step 1 "+i+" "+fldMg.get(i));
 				TextView fff = (TextView)findViewById(fldMg.get(i));
 				fff.setText("-");
-				fff.setGravity(17);
-				fff.setTextColor(R.color.black);
+				//fff.setGravity(17);
+				//fff.setTextColor(R.color.black);
+				Log.i(this_marker,"set "+i);
 				_fieldsMg.add(fff);
 				
 			} 
-			
-		}
+			*/
+		//}
 		
 		
+		Log.i(this_marker,"go thread");
 		
 		mt = new goInd();
        	mt.execute();
@@ -234,19 +248,22 @@ public class DashBoard extends Activity implements OnClickListener {
 		if (v.getId()==R.id.usd) {
 			
 			Log.i(this_marker,"take USD");
+			/*
 			dyn_brent_usd = "usd";
 			Intent intent = new Intent(this, DynUsd.class);
 		    startActivity(intent);
+		    */
 		    
 		}
 		
 		if (v.getId()==R.id.brent) {
 			
 			Log.i(this_marker,"take R.id.brent");
+			/*
 			dyn_brent_usd = "brent";
 			Intent intent = new Intent(this, DynUsd.class);
 		    startActivity(intent);
-		    
+		    */
 		}
 		
 		if (v.getId()==R.id.curT) {
@@ -317,9 +334,12 @@ public class DashBoard extends Activity implements OnClickListener {
 	    	addInd(gisFromSite.readThingSpeak("180657", "2", "field2"	, 	"96"	,5) , _stringData2);
 	    	addInd(gisFromSite.readThingSpeak("200376", "2", "field2"	, 	"96"	,5) , _stringData3);
 	    	//addInd(gisFromSite.readThingSpeakTest() , _stringData3);
-	    		
+	    	/*	
 			_stringData.set(4,"Brent: ".concat(priceBRENT.investing()));
 	    	_stringData.set(5, "USD: ".concat(priceBRENT.usd()));
+	    	*/
+	    	_stringData.set(4,"Brent: ".concat("-"));
+	    	_stringData.set(5, "USD: ".concat("-"));
 	    	
 	    	return null;
 	    	
@@ -354,8 +374,8 @@ public class DashBoard extends Activity implements OnClickListener {
 	    		 
 	    		  for(int i = 0 ; i<_stringDataMG.size();i++){
 	    			  
-	    			  _fieldsMg.get(i).setText(_stringDataMG.get(i));
-	    			  _fieldsMg.get(i).setBackgroundResource(_color.get(Integer.valueOf(_stringDataMG.get(i))-1));
+	    			  //_fieldsMg.get(i).setText(_stringDataMG.get(i));
+	    			  //_fieldsMg.get(i).setBackgroundResource(_color.get(Integer.valueOf(_stringDataMG.get(i))-1));
 	    			  
 	    		  }
 	    		  
@@ -388,9 +408,12 @@ public class DashBoard extends Activity implements OnClickListener {
 		
 		@Override
 		protected Void doInBackground(Void... params) {
-				
+			/*	
 			_stringData.set(4,  priceBRENT.investing());
 	    	_stringData.set(5, priceBRENT.usd());
+	    	*/
+			_stringData.set(4,  "-");
+	    	_stringData.set(5, "-");
 		    return null;
 		    
 	    }//protected Void doInBackground(Void... params)
@@ -403,9 +426,12 @@ public class DashBoard extends Activity implements OnClickListener {
 	    	super.onPostExecute(result);
 	    	
 	    	try {
-	    		
+	    		/*
 	    		_stringData.set(5,"USD: "	+_stringData.get(5));
 	    		_stringData.set(4,"brent: "	+_stringData.get(4));
+	    		*/
+	    		_stringData.set(5,"USD: "	);
+	    		_stringData.set(4,"brent: "	);
 	    		
 	    	}
 	    	
